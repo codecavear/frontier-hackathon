@@ -1,13 +1,15 @@
 <template>
-    <header>
-        <h1>Frontier Hackathon</h1>
+    <header class="bg-gray-800">
+        <div class="container mx-auto flex justify-between items-center px-2 py-2">
+            <h1 class="text-white text-2xl font-bold">Frontier Hackathon</h1>
+            <ConnectWallet />
+        </div>
     </header>
 </template>
 
 <script setup>
-
 </script>
 
 <style lang="scss" scoped>
-
 </style>
+
