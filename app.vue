@@ -28,12 +28,11 @@ const metadata = {
 
 const connectorImages = {
   particle: "https://avatars.githubusercontent.com/u/101794619?s=280&v=4",
-  injected: "https://play-lh.googleusercontent.com/pYXciEtsSzizg_u5BFdNl8GWl1K-5Rjp8X8ltWDE0LXq4NKG-riznMOsfnlYu1sNJw",
+  injected:
+    "https://play-lh.googleusercontent.com/pYXciEtsSzizg_u5BFdNl8GWl1K-5Rjp8X8ltWDE0LXq4NKG-riznMOsfnlYu1sNJw",
 };
 
-const featuredWalletIds = [
-  "particle",
-];
+const featuredWalletIds = ["particle"];
 
 const wagmiConfig = createConfig({
   autoConnect: true,
@@ -59,7 +58,13 @@ const wagmiConfig = createConfig({
 });
 
 // 3. Create modal
-createWeb3Modal({ wagmiConfig, projectId, chains, connectorImages, featuredWalletIds });
+createWeb3Modal({
+  wagmiConfig,
+  projectId,
+  chains,
+  connectorImages,
+  featuredWalletIds,
+});
 
 const links = [
   {
@@ -81,10 +86,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <TheHeader />
-  <main>
-    <NuxtPage />
-  </main>
-
-  <TheFooter />
+  <div class="flex flex-col h-screen">
+    <TheHeader />
+    <main class="flex-1">
+        <NuxtPage />
+    </main>
+    <TheFooter />
+  </div>
 </template>
