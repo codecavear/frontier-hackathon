@@ -1,6 +1,6 @@
 <template>
   <UContainer class="justify-center flex py-4">
-    <UCard class="size-1/2">
+    <UCard class="size-1/3">
       <template #header>
         <UContainer class="flex flex-col items-center">
           <h1 class="text-2xl">Buy coffe</h1>
