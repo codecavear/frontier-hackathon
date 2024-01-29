@@ -51,7 +51,6 @@
           block
           @click="mintNFT()"
         />
-        {{ nftBalance }}
       </div>
     </template>
   </UCard>
@@ -61,8 +60,6 @@
 import {
   readContract,
   writeContract,
-  getAccount,
-  waitForTransaction,
 } from "@wagmi/core";
 import { formatEther } from "viem";
 import usdcABI from "@/abis/usdc.json";
@@ -74,9 +71,6 @@ const coffeContractAddress = "0x693e0c4A55D4d2CC28F63AB2A3a3d8749dB2e781";
 const collateralSymbol = ref("");
 const nftSymbol = ref("");
 const nftPrice = ref("");
-const nftBalance = ref("");
-const account = getAccount();
-
 const quantity = ref(0);
 
 function addOneCoffe() {
@@ -93,21 +87,7 @@ async function mintNFT() {
     address: coffeContractAddress,
     functionName: "mintToken",
   });
-  const transactionReceipt = await waitForTransaction({
-    hash: result.hash,
-  });
-  getNftBalance();
 }
-
-async function getNftBalance() {
-  nftBalance.value = await readContract({
-    abi: coffeeABI,
-    address: coffeContractAddress,
-    functionName: "balanceOf",
-    args: [account.address],
-  });
-}
-
 onMounted(async () => {
   collateralSymbol.value = await readContract({
     abi: usdcABI,
@@ -127,7 +107,7 @@ onMounted(async () => {
     functionName: "mintPrice",
   });
 
-  getNftBalance();
+  
 });
 </script>
 
