@@ -1,16 +1,22 @@
 <template>
   <UCard class="w-[400px] max-w-full">
     <template #header>
-      <div class="flex flex-col items-center">
-        <h1 class="text-2xl">Buy coffee</h1>
-        <h3>
-          1 {{ nftSymbol }} = {{ formatEther(nftPrice) }}
-          {{ collateralSymbol }}
-        </h3>
+      <div class="flex flex-col items-center gap-2">
+        <div class="flex gap-2">
+          <UBadge color="gray" size="lg" variant="solid">Buy</UBadge>
+          <UBadge color="gray" size="lg" variant="solid">Spend</UBadge>
+          <UBadge color="gray" size="lg" variant="solid">Sell</UBadge>
+        </div>
+        <div>
+          <h1 class="text-xl">
+            1 {{ nftSymbol }} = {{ formatEther(nftPrice) }}
+            {{ collateralSymbol }}
+          </h1>
+        </div>
       </div>
     </template>
 
-    <div class="flex justify-center items-center pb-4">
+    <div class="flex justify-center items-center">
       <div>
         <UButton
           @click="removeOneCoffe()"
@@ -36,6 +42,7 @@
         ></UButton>
       </div>
     </div>
+
     <template #footer>
       <div class="flex flex-col">
         <div class="flex justify-between items-center">
@@ -47,6 +54,7 @@
         <UButton
           color="orange"
           variant="soft"
+          size="lg"
           label="Buy"
           block
           @click="mintNFT()"
@@ -57,10 +65,7 @@
 </template>
 
 <script setup>
-import {
-  readContract,
-  writeContract,
-} from "@wagmi/core";
+import { readContract, writeContract } from "@wagmi/core";
 import { formatEther } from "viem";
 import usdcABI from "@/abis/usdc.json";
 import coffeeABI from "@/abis/coffee.json";
@@ -106,9 +111,9 @@ onMounted(async () => {
     address: coffeContractAddress,
     functionName: "mintPrice",
   });
-
-  
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>
