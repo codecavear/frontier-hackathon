@@ -1,5 +1,5 @@
 <template>
-  <UCard class="w-[400px] max-w-full">
+  <UCard class="w-[400px] max-w-full cardC">
     <template #header>
       <div class="flex flex-col items-center gap-2">
         <div class="flex gap-2">
@@ -114,6 +114,9 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+  .cardC {
+    background: linear-gradient(to top, rgb(18, 18, 18) 10.6%, rgb(0, 0, 0) 97.7%); 
+    opacity: 0.1; }
 </style>
+#121212
