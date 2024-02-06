@@ -3,7 +3,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_usdcAddress",
+        "name": "_erc20Address",
         "type": "address"
       },
       {
@@ -81,13 +81,13 @@
         "type": "address"
       },
       {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
+        "indexed": false,
+        "internalType": "uint16[]",
+        "name": "tokenIds",
+        "type": "uint16[]"
       }
     ],
-    "name": "NFTSwapped",
+    "name": "NFTsSwapped",
     "type": "event"
   },
   {
@@ -172,6 +172,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "erc20Token",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -216,6 +229,19 @@
   },
   {
     "inputs": [],
+    "name": "maxOperationLimit",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "mintPrice",
     "outputs": [
       {
@@ -228,13 +254,24 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "quantity",
+        "type": "uint16"
+      }
+    ],
     "name": "mintToken",
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "firstMintedId",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint16",
+        "name": "mintedQuantity",
+        "type": "uint16"
       }
     ],
     "stateMutability": "nonpayable",
@@ -288,9 +325,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
+        "internalType": "uint16[]",
+        "name": "tokenIds",
+        "type": "uint16[]"
       }
     ],
     "name": "redeemToken",
@@ -377,9 +414,35 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
+        "internalType": "address",
+        "name": "newERC20Address",
+        "type": "address"
+      }
+    ],
+    "name": "setERC20Address",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "newLimit",
+        "type": "uint8"
+      }
+    ],
+    "name": "setMaxOperationLimit",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
         "name": "newPrice",
-        "type": "uint256"
+        "type": "uint16"
       }
     ],
     "name": "setMintPrice",
@@ -409,9 +472,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
+        "internalType": "uint16[]",
+        "name": "tokenIds",
+        "type": "uint16[]"
       },
       {
         "internalType": "address",
@@ -419,7 +482,7 @@
         "type": "address"
       }
     ],
-    "name": "swapCoffeNFT",
+    "name": "swapToken",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -445,7 +508,7 @@
         "type": "uint256"
       }
     ],
-    "name": "tokenPrices",
+    "name": "tokenMintPrices",
     "outputs": [
       {
         "internalType": "uint256",
@@ -509,19 +572,6 @@
     "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "usdcToken",
-    "outputs": [
-      {
-        "internalType": "contract IERC20",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   }
 ]
