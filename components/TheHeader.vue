@@ -18,7 +18,7 @@ import coffeeABI from "@/abis/coffee.json";
 
 const account = getAccount();
 const nftBalance = ref("");
-const coffeContractAddress = "0x693e0c4A55D4d2CC28F63AB2A3a3d8749dB2e781";
+const coffeContractAddress = "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846";
 
 async function getNftBalance() {
   nftBalance.value = await readContract({
