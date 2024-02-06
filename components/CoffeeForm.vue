@@ -18,28 +18,16 @@
 
     <div class="flex justify-center items-center">
       <div>
-        <UButton
-          @click="removeOneCoffe()"
-          icon="i-heroicons-minus"
-          size="md"
-          :ui="{ rounded: 'rounded-full' }"
-          color="indigo"
-          variant="outline"
-        ></UButton>
+        <UButton @click="removeOneCoffe()" icon="i-heroicons-minus" size="md" :ui="{ rounded: 'rounded-full' }"
+          color="indigo" variant="outline"></UButton>
       </div>
       <div class="flex flex-col items-center px-6">
         <h2>Quantity</h2>
         <h1 class="text-8xl">{{ quantity }}</h1>
       </div>
       <div>
-        <UButton
-          @click="addOneCoffe()"
-          icon="i-heroicons-plus"
-          size="md"
-          :ui="{ rounded: 'rounded-full' }"
-          color="indigo"
-          variant="outline"
-        ></UButton>
+        <UButton @click="addOneCoffe()" icon="i-heroicons-plus" size="md" :ui="{ rounded: 'rounded-full' }" color="indigo"
+          variant="outline"></UButton>
       </div>
     </div>
 
@@ -51,15 +39,8 @@
             {{ formatEther(nftPrice) }} {{ collateralSymbol }}
           </h1>
         </div>
-        <UButton
-          color="orange"
-          variant="soft"
-          size="lg"
-          label="Buy"
-          block
-          @click="mintNFT()"
-        />
-      </div>
+        <UButton color="orange" variant="soft" size="lg" label="Buy" block @click="mintNFT(quantity)" />
+      </div>erc20Token
     </template>
   </UCard>
 </template>
@@ -67,16 +48,16 @@
 <script setup>
 import { readContract, writeContract } from "@wagmi/core";
 import { formatEther } from "viem";
-import usdcABI from "@/abis/usdc.json";
+import usdcABI from "@/abis/erc20.json";
 import coffeeABI from "@/abis/coffee.json";
 
-const usdcContractAddress = "0x36F7caa6bEE589Ed6B24Dfa7A59f929cFeb2848e";
-const coffeContractAddress = "0x693e0c4A55D4d2CC28F63AB2A3a3d8749dB2e781";
+const coffeContractAddress = "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846";
 
 const collateralSymbol = ref("");
 const nftSymbol = ref("");
 const nftPrice = ref("");
 const quantity = ref(0);
+const erc20TokenAddress = ref("");
 
 function addOneCoffe() {
   quantity.value += 1;
@@ -86,17 +67,28 @@ function removeOneCoffe() {
   quantity.value -= 1;
 }
 
-async function mintNFT() {
-  const result = await writeContract({
+async function mintNFT(quantity) {
+  console.log(quantity)
+  await writeContract({
     abi: coffeeABI,
     address: coffeContractAddress,
     functionName: "mintToken",
+    args: [quantity.toString()]
   });
 }
+
 onMounted(async () => {
+  erc20TokenAddress.value = await readContract({
+    abi: coffeeABI,
+    address: coffeContractAddress,
+    functionName: "erc20Token",
+  });
+
+  console.log(erc20TokenAddress.value)
+
   collateralSymbol.value = await readContract({
     abi: usdcABI,
-    address: usdcContractAddress,
+    address: erc20TokenAddress,
     functionName: "symbol",
   });
 
@@ -116,6 +108,6 @@ onMounted(async () => {
 
 <style scoped>
 .cardF {
-    background: linear-gradient(to top, rgb(18, 18, 18) 10.6%, rgb(0, 0, 0) 97.7%); 
-   }
+  background: linear-gradient(to top, rgb(18, 18, 18) 10.6%, rgb(0, 0, 0) 97.7%);
+}
 </style>
