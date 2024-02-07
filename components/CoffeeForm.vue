@@ -40,7 +40,7 @@
           </h1>
         </div>
         <UButton color="orange" variant="soft" size="lg" label="Buy" block @click="mintNFT(quantity)" />
-      </div>erc20Token
+      </div>
     </template>
   </UCard>
 </template>
