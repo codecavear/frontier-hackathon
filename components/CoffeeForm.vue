@@ -36,7 +36,7 @@
         <div class="flex justify-between items-center">
           <h1>Total:</h1>
           <h1 class="text-lg">
-            {{ formatEther(nftPrice) }} {{ collateralSymbol }}
+            {{ formatEther(nftPrice) * quantity }} {{ collateralSymbol }}
           </h1>
         </div>
         <UButton color="orange" variant="soft" size="lg" label="Buy" block @click="mintNFT(quantity)" />
@@ -56,7 +56,7 @@ const coffeContractAddress = "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846";
 const collateralSymbol = ref("");
 const nftSymbol = ref("");
 const nftPrice = ref("");
-const quantity = ref(0);
+const quantity = ref(1);
 const erc20TokenAddress = ref("");
 
 function addOneCoffe() {
@@ -84,11 +84,9 @@ onMounted(async () => {
     functionName: "erc20Token",
   });
 
-  console.log(erc20TokenAddress.value)
-
   collateralSymbol.value = await readContract({
     abi: usdcABI,
-    address: erc20TokenAddress,
+    address: erc20TokenAddress.value,
     functionName: "symbol",
   });
 
