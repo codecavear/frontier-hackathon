@@ -23,7 +23,7 @@
         </div>
       </UContainer>
 
-      <div class="flex justify-center items-center h-[70vh]">
+      <div class="flex justify-start items-end h-[70vh]">
         <CoffeeForm />
       </div>
     </div>
@@ -123,7 +123,7 @@
 
 <style scoped>
 .cardC {
-  background: radial-gradient(circle at 1140px 150px, #612333 1%, #121212 23%);
+  background: radial-gradient(circle at 1000px 150px, #612333 1%, #121212 23%);
 }
 .cardCS {
   background: radial-gradient(circle at 400px 300px, #612333 1%, #121212 23%);
