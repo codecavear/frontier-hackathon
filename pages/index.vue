@@ -29,15 +29,15 @@
     </div>
     <!-- Seccion 2 -->
     <UContainer>
-      <div class="grid grid-cols-3 items-center text-center h-[50vh]">
-        <div><UButton icon="i-heroicons-inbox" color="gray" size="xl" /></div>
-        <div><UButton icon="i-heroicons-inbox" color="gray" size="xl" /></div>
-        <div><UButton icon="i-heroicons-inbox" color="gray" size="xl" /></div>
+      <div class="grid grid-cols-3 items-center content-center h-[50vh]">
+        <div class="flex justify-center"><img src="../public/img/group23.png" alt="" /></div>
+        <div class="flex justify-center"><img src="../public/img/group23.png" alt="" /></div>
+        <div class="flex justify-center"><img src="../public/img/group23.png" alt="" /></div>
       </div>
     </UContainer>
     <!-- Seccion 3 -->
     <UContainer>
-      <div class="grid grid-cols-2 h-[70vh]">
+      <div class="grid grid-cols-2 h-[70vh] items-center">
         <div class="flex gap-3 flex-col content-start text-start">
           <h3 class="text-orange-700">About the app</h3>
           <h1 class="text-3xl">About the app</h1>
@@ -53,8 +53,12 @@
         </div>
 
         <div class="grid grid-rows-3 grid-flow-col gap-4">
-          <div class="row-start-5 row-span-2 ..."><img src="../public/img/Wallet1.png" alt=""></div>
-          <div class="row-end-3 row-span-2 ..."><img src="../public/img/Wallet1.png" alt=""></div>
+          <div class="row-start-2 row-span-2 ...">
+            <img src="../public/img/Wallet1.png" alt="" />
+          </div>
+          <div class="row-end-3 row-span-2 ...">
+            <img src="../public/img/Wallet1.png" alt="" />
+          </div>
         </div>
       </div>
     </UContainer>
@@ -87,10 +91,18 @@
       <div
         class="grid grid-rows-3 grid-flow-col items-center text-center gap-4 h-[70ph]"
       >
-        <div class="row-span-4 col-span-2 ... h-[70vh]"><img src="../public/img/Wallet1.png" alt=""></div>
-        <div class="row-span-2 col-span-2 ... h-[35vh]"><img src="../public/img/Wallet1.png" alt=""></div>
-        <div class="row-span-2 ... h-[35vh]"><img src="../public/img/Wallet1.png" alt=""></div>
-        <div class="row-span-2 ... h-[35vh]"><img src="../public/img/Wallet1.png" alt=""></div>
+        <div class="row-span-4 col-span-2 ... h-[70vh]">
+          <img src="../public/img/Wallet1.png" alt="" />
+        </div>
+        <div class="row-span-2 col-span-2 ... h-[35vh]">
+          <img src="../public/img/Wallet1.png" alt="" />
+        </div>
+        <div class="row-span-2 ... h-[35vh]">
+          <img src="../public/img/Wallet1.png" alt="" />
+        </div>
+        <div class="row-span-2 ... h-[35vh]">
+          <img src="../public/img/Wallet1.png" alt="" />
+        </div>
       </div>
     </UContainer>
     <!-- Seccion 6 -->
