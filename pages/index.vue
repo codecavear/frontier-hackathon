@@ -23,16 +23,22 @@
         </div>
       </UContainer>
 
-      <div class="flex justify-start items-end h-[70vh]">
+      <div class="flex justify-center items-end h-[70vh]">
         <CoffeeForm />
       </div>
     </div>
     <!-- Seccion 2 -->
     <UContainer>
-      <div class="grid grid-cols-3 items-center content-center h-[50vh]">
-        <div class="flex justify-center"><img src="../public/img/group23.png" alt="" /></div>
-        <div class="flex justify-center"><img src="../public/img/group23.png" alt="" /></div>
-        <div class="flex justify-center"><img src="../public/img/group23.png" alt="" /></div>
+      <div class="grid grid-cols-3 items-center content-center h-[40vh]">
+        <div class="flex justify-center">
+          <img src="../public/img/group28.png" alt="" />
+        </div>
+        <div class="flex justify-center">
+          <img src="../public/img/group26.png" alt="" />
+        </div>
+        <div class="flex justify-center">
+          <img src="../public/img/group27.png" alt="" />
+        </div>
       </div>
     </UContainer>
     <!-- Seccion 3 -->
@@ -54,7 +60,7 @@
 
         <div class="grid grid-rows-3 grid-flow-col gap-4">
           <div class="row-start-2 row-span-2 ...">
-            <img src="../public/img/Wallet1.png" alt="" />
+            <img src="../public/img/Group14.png" alt="" />
           </div>
           <div class="row-end-3 row-span-2 ...">
             <img src="../public/img/Wallet1.png" alt="" />
@@ -66,8 +72,8 @@
     <div class="h-screen cardCS">
       <UContainer>
         <div class="grid grid-cols-2 items-center h-[70vh]">
-          <div>
-            <h1 class="text-3xl">aca va una img</h1>
+          <div class="flex justify-center">
+            <img src="../public/img/Wallet1.png" alt="" />
           </div>
 
           <div class="flex gap-3 flex-col content-start text-start">
@@ -88,26 +94,16 @@
     </div>
     <!-- Seccion 5 -->
     <UContainer>
-      <div
-        class="grid grid-rows-3 grid-flow-col items-center text-center gap-4 h-[70ph]"
-      >
-        <div class="row-span-4 col-span-2 ... h-[70vh]">
-          <img src="../public/img/Wallet1.png" alt="" />
-        </div>
-        <div class="row-span-2 col-span-2 ... h-[35vh]">
-          <img src="../public/img/Wallet1.png" alt="" />
-        </div>
-        <div class="row-span-2 ... h-[35vh]">
-          <img src="../public/img/Wallet1.png" alt="" />
-        </div>
-        <div class="row-span-2 ... h-[35vh]">
-          <img src="../public/img/Wallet1.png" alt="" />
-        </div>
+      <div class="grid grid-rows-4 grid-flow-col gap-4 h-[70vh]">
+        <div class="row-span-4 col-span-1 ...">1</div>
+        <div class="row-span-2 col-span-2 ...">2</div>
+        <div class="row-span-2 ...">3</div>
+        <div class="row-span-2 ...">4</div>
       </div>
     </UContainer>
     <!-- Seccion 6 -->
     <UContainer>
-      <div class="grid grid-cols-2 h-[70vh]">
+      <div class="grid grid-cols-2 h-[70vh] items-center">
         <div class="flex gap-3 flex-col content-start text-start">
           <h3 class="text-orange-700">About the app</h3>
           <h1 class="text-3xl">About the app</h1>
@@ -121,10 +117,13 @@
             <UButton variant="ghost" color="purple"> Learn more </UButton>
           </div>
         </div>
-
         <div class="grid grid-rows-3 grid-flow-col gap-4">
-          <div class="row-start-5 row-span-2 ...">01</div>
-          <div class="row-end-3 row-span-2 ...">02</div>
+          <div class="row-end-3 row-span-2 ...">
+            <img src="../public/img/Wallet1.png" alt="" />
+          </div>
+          <div class="row-start-2 row-span-2 ...">
+            <img src="../public/img/Group14.png" alt="" />
+          </div>
         </div>
       </div>
     </UContainer>
