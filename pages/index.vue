@@ -53,8 +53,8 @@
         </div>
 
         <div class="grid grid-rows-3 grid-flow-col gap-4">
-          <div class="row-start-5 row-span-2 ...">01</div>
-          <div class="row-end-3 row-span-2 ...">02</div>
+          <div class="row-start-5 row-span-2 ..."><img src="../public/img/Wallet1.png" alt=""></div>
+          <div class="row-end-3 row-span-2 ..."><img src="../public/img/Wallet1.png" alt=""></div>
         </div>
       </div>
     </UContainer>
@@ -87,10 +87,10 @@
       <div
         class="grid grid-rows-3 grid-flow-col items-center text-center gap-4 h-[70ph]"
       >
-        <div class="row-span-4 col-span-2 ... h-[70vh]"><h1 class="text-3xl">Img1</h1></div>
-        <div class="row-span-2 col-span-2 ... h-[35vh]"><h1 class="text-3xl">Img2</h1></div>
-        <div class="row-span-2 ... h-[35vh]"><h1 class="text-3xl">Img3</h1></div>
-        <div class="row-span-2 ... h-[35vh]"><h1 class="text-3xl">Img4</h1></div>
+        <div class="row-span-4 col-span-2 ... h-[70vh]"><img src="../public/img/Wallet1.png" alt=""></div>
+        <div class="row-span-2 col-span-2 ... h-[35vh]"><img src="../public/img/Wallet1.png" alt=""></div>
+        <div class="row-span-2 ... h-[35vh]"><img src="../public/img/Wallet1.png" alt=""></div>
+        <div class="row-span-2 ... h-[35vh]"><img src="../public/img/Wallet1.png" alt=""></div>
       </div>
     </UContainer>
     <!-- Seccion 6 -->
