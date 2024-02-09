@@ -1,45 +1,59 @@
 <template>
   <UCard class="w-[400px] max-w-full cardF">
     <template #header>
-      <div class="flex flex-col items-center gap-2">
-        <div class="flex gap-2">
-          <UBadge color="gray" size="lg" variant="solid">Buy</UBadge>
-          <UBadge color="gray" size="lg" variant="solid">Spend</UBadge>
-          <UBadge color="gray" size="lg" variant="solid">Sell</UBadge>
-        </div>
-        <div>
-          <h1 class="text-xl">
-            1 {{ nftSymbol }} = {{ formatEther(nftPrice) }}
-            {{ collateralSymbol }}
-          </h1>
-        </div>
-      </div>
+      <UTabs :ui="{ list: {tab: { active: 'bg-[#3d170b]' }}}" :items="tabsItems" />
     </template>
 
     <div class="flex justify-center items-center">
       <div>
-        <UButton @click="removeOneCoffe()" icon="i-heroicons-minus" size="md" :ui="{ rounded: 'rounded-full' }"
-          color="indigo" variant="outline"></UButton>
+        <UButton
+          @click="removeOneCoffe()"
+          icon="i-heroicons-minus"
+          size="md"
+          :ui="{ rounded: 'rounded-full' }"
+          color="orange"
+          variant="soft"
+        ></UButton>
       </div>
       <div class="flex flex-col items-center px-6">
         <h2>Quantity</h2>
         <h1 class="text-8xl">{{ quantity }}</h1>
       </div>
       <div>
-        <UButton @click="addOneCoffe()" icon="i-heroicons-plus" size="md" :ui="{ rounded: 'rounded-full' }" color="indigo"
-          variant="outline"></UButton>
+        <UButton
+          @click="addOneCoffe()"
+          icon="i-heroicons-plus"
+          size="md"
+          :ui="{ rounded: 'rounded-full' }"
+          color="orange"
+          variant="soft"
+        ></UButton>
       </div>
+    </div>
+
+    <div class="flex justify-center my-4">
+      <UKbd>
+        1 {{ nftSymbol }} = {{ formatEther(nftPrice) }}
+        {{ collateralSymbol }}</UKbd
+      >
     </div>
 
     <template #footer>
       <div class="flex flex-col">
-        <div class="flex justify-between items-center">
-          <h1>Total:</h1>
-          <h1 class="text-lg">
+        <div class="flex justify-between items-center uppercase text-xs my-2">
+          <span>Total:</span>
+          <span>
             {{ formatEther(nftPrice) * quantity }} {{ collateralSymbol }}
-          </h1>
+          </span>
         </div>
-        <UButton color="orange" variant="soft" size="lg" label="Buy" block @click="mintNFT(quantity)" />
+        <UButton
+          color="orange"
+          variant="soft"
+          size="lg"
+          label="Buy"
+          block
+          @click="mintNFT(quantity)"
+        />
       </div>
     </template>
   </UCard>
@@ -59,6 +73,20 @@ const nftPrice = ref("");
 const quantity = ref(1);
 const erc20TokenAddress = ref("");
 
+const tabsItems = [
+  {
+    label: "Buy",
+  },
+  {
+    label: "Spend",
+    disabled: true,
+  },
+  {
+    label: "Redeem",
+    disabled: true,
+  },
+];
+
 function addOneCoffe() {
   quantity.value += 1;
 }
@@ -68,12 +96,12 @@ function removeOneCoffe() {
 }
 
 async function mintNFT(quantity) {
-  console.log(quantity)
+  console.log(quantity);
   await writeContract({
     abi: coffeeABI,
     address: coffeContractAddress,
     functionName: "mintToken",
-    args: [quantity.toString()]
+    args: [quantity.toString()],
   });
 }
 
@@ -106,6 +134,10 @@ onMounted(async () => {
 
 <style scoped>
 .cardF {
-  background: linear-gradient(to top, rgb(18, 18, 18) 10.6%, rgb(0, 0, 0) 97.7%);
+  background: linear-gradient(
+    to top,
+    rgb(18, 18, 18) 10.6%,
+    rgb(0, 0, 0) 97.7%
+  );
 }
 </style>
