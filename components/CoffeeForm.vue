@@ -1,7 +1,8 @@
 <template>
   <UCard class="w-[400px] max-w-full cardF">
     <template #header>
-      <UTabs :ui="{ list: {tab: { active: 'bg-[#3d170b]' }}}" :items="tabsItems" />
+      <SpendModal v-model="spendModalOpen" />
+      <UTabs @change="onTabsChange" :ui="{ list: {tab: { active: 'bg-[#3d170b]' }}}" :items="tabsItems" />
     </template>
 
     <div class="flex justify-center items-center">
@@ -64,6 +65,7 @@ import { readContract, writeContract } from "@wagmi/core";
 import { formatEther } from "viem";
 import usdcABI from "@/abis/erc20.json";
 import coffeeABI from "@/abis/coffee.json";
+import { computed } from "vue";
 
 const coffeContractAddress = "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846";
 
@@ -72,20 +74,23 @@ const nftSymbol = ref("");
 const nftPrice = ref("");
 const quantity = ref(1);
 const erc20TokenAddress = ref("");
+const nftQuantiy = ref(0);
+const spendModalOpen = ref(true)
 
-const tabsItems = [
+const tabsItems = computed(() => [
   {
     label: "Buy",
   },
   {
     label: "Spend",
-    disabled: true,
+
   },
   {
     label: "Redeem",
     disabled: true,
   },
-];
+]);
+
 
 function addOneCoffe() {
   quantity.value += 1;
@@ -103,6 +108,12 @@ async function mintNFT(quantity) {
     functionName: "mintToken",
     args: [quantity.toString()],
   });
+}
+
+function onTabsChange (index) {
+  const item = tabsItems.value[index]
+  if(item.label === 'Spend') spendModalOpen.value = true
+  console.log(item)
 }
 
 onMounted(async () => {

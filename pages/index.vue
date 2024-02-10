@@ -31,13 +31,13 @@
     <UContainer>
       <div class="grid grid-cols-3 items-center content-center h-[40vh]">
         <div class="flex justify-center">
-          <img src="../public/img/group28.png" alt="" />
+          <img src="/img/group28.png" alt="" />
         </div>
         <div class="flex justify-center">
-          <img src="../public/img/group26.png" alt="" />
+          <img src="/img/group26.png" alt="" />
         </div>
         <div class="flex justify-center">
-          <img src="../public/img/group27.png" alt="" />
+          <img src="/img/group27.png" alt="" />
         </div>
       </div>
     </UContainer>
@@ -60,10 +60,10 @@
 
         <div class="grid grid-rows-3 grid-flow-col gap-4">
           <div class="row-start-2 row-span-2 ...">
-            <img src="../public/img/Group14.png" alt="" />
+            <img src="/img/Group14.png" alt="" />
           </div>
           <div class="row-end-3 row-span-2 ...">
-            <img src="../public/img/Wallet1.png" alt="" />
+            <img src="/img/Wallet1.png" alt="" />
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
       <UContainer>
         <div class="grid grid-cols-2 items-center h-[70vh]">
           <div class="flex justify-center">
-            <img src="../public/img/Wallet1.png" alt="" />
+            <img src="/img/Wallet1.png" alt="" />
           </div>
 
           <div class="flex gap-3 flex-col content-start text-start">
@@ -119,10 +119,10 @@
         </div>
         <div class="grid grid-rows-3 grid-flow-col gap-4">
           <div class="row-end-3 row-span-2 ...">
-            <img src="../public/img/Wallet1.png" alt="" />
+            <img src="/img/Wallet1.png" alt="" />
           </div>
           <div class="row-start-2 row-span-2 ...">
-            <img src="../public/img/Group14.png" alt="" />
+            <img src="/img/Group14.png" alt="" />
           </div>
         </div>
       </div>
