@@ -7,18 +7,12 @@
       <UContainer>
         <div class="flex flex-col gap-3">
           <h1 class="text-7xl">Not a cup,</h1>
-          <h1 class="text-7xl">just a coffee</h1>
+          <h1 class="text-7xl">just a coffee.</h1>
           <h3 class="text-gray-400 text-xl">
             Easy, contacless, decentralized, green.
           </h3>
           <div>
-            <UButton
-              size="md"
-              color="orange"
-              variant="soft"
-              label="Connect"
-              :trailing="false"
-            />
+            <ConnectWallet />
           </div>
         </div>
       </UContainer>
@@ -45,13 +39,12 @@
     <UContainer>
       <div class="grid grid-cols-2 h-[70vh] items-center">
         <div class="flex gap-3 flex-col content-start text-start">
-          <h3 class="text-orange-700">About the app</h3>
-          <h1 class="text-3xl">About the app</h1>
+          <h3 class="text-orange-700">Easy transaction</h3>
+          <h1 class="text-3xl">Buy coffee on the go</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-            dignissimos doloremque atque? Error omnis eius minus tempore nam
-            natus hic reprehenderit, corrupti quasi. Recusandae commodi iure,
-            hic illo error nam.
+            Using either your email, phone number, social accounts or blockchain
+            wallets, you can create an account in seconds and start buying
+            coffee.
           </p>
           <div>
             <UButton variant="ghost" color="purple"> Learn more </UButton>
@@ -77,16 +70,16 @@
           </div>
 
           <div class="flex gap-3 flex-col content-start text-start">
-            <h3 class="text-orange-700">About the app</h3>
-            <h1 class="text-3xl">About the app</h1>
+            <h3 class="text-orange-700">Sell coffee easily</h3>
+            <h1 class="text-3xl">Setup a store in under a minute</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-              dignissimos doloremque atque? Error omnis eius minus tempore nam
-              natus hic reprehenderit, corrupti quasi. Recusandae commodi iure,
-              hic illo error nam.
+              Simple but power technology to help you sell your coffee and own
+              your money. Blockchain is used to secure your transactions and
+              keep your money safe. Want to redeem your COFF and get your money?
+              No problem, we got you covered in seconds.
             </p>
             <div>
-              <UButton variant="ghost" color="purple"> Learn more </UButton>
+              <UButton variant="ghost" color="purple"> Create account </UButton>
             </div>
           </div>
         </div>
