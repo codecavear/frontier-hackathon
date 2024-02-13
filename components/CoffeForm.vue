@@ -7,36 +7,23 @@
 
     <div class="flex justify-center items-center">
       <div>
-        <UButton
-          @click="removeOneCoffe()"
-          icon="i-heroicons-minus"
-          size="md"
-          :ui="{ rounded: 'rounded-full' }"
-          color="orange"
-          variant="soft"
-        ></UButton>
+        <UButton @click="removeOneCoffe()" icon="i-heroicons-minus" size="md" :ui="{ rounded: 'rounded-full' }"
+          color="orange" variant="soft"></UButton>
       </div>
       <div class="flex flex-col items-center px-6">
         <h2>Quantity</h2>
         <h1 class="text-8xl">{{ quantity }}</h1>
       </div>
       <div>
-        <UButton
-          @click="addOneCoffe()"
-          icon="i-heroicons-plus"
-          size="md"
-          :ui="{ rounded: 'rounded-full' }"
-          color="orange"
-          variant="soft"
-        ></UButton>
+        <UButton @click="addOneCoffe()" icon="i-heroicons-plus" size="md" :ui="{ rounded: 'rounded-full' }" color="orange"
+          variant="soft"></UButton>
       </div>
     </div>
 
     <div class="flex justify-center my-4">
       <UKbd>
         1 {{ nftSymbol }} = {{ formatEther(nftPrice) }}
-        {{ collateralSymbol }}</UKbd
-      >
+        {{ collateralSymbol }}</UKbd>
     </div>
 
     <template #footer>
@@ -47,25 +34,19 @@
             {{ formatEther(nftPrice) * quantity }} {{ collateralSymbol }}
           </span>
         </div>
-        <UButton
-          color="orange"
-          variant="soft"
-          size="lg"
-          label="Buy"
-          block
-          @click="mintNFT(quantity)"
-        />
+        <UButton color="orange" variant="soft" size="lg" label="Buy" block @click="executeMint(quantity)" />
       </div>
     </template>
   </UCard>
 </template>
 
 <script setup>
-import { readContract, writeContract } from "@wagmi/core";
+import { readContract, writeContract, waitForTransaction } from "@wagmi/core";
 import { formatEther } from "viem";
 import usdcABI from "@/abis/erc20.json";
 import coffeeABI from "@/abis/coffee.json";
 import { computed } from "vue";
+import { ethers } from "ethers"
 
 const coffeContractAddress = "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846";
 
@@ -100,14 +81,48 @@ function removeOneCoffe() {
   quantity.value -= 1;
 }
 
+async function approveERC20(quantity) {
+  const parseNftPriceBigNumber = ethers.BigNumber.from(nftPrice.value.toString());
+  const parseQuantityBigNumber = ethers.BigNumber.from(quantity.toString());
+
+  const totalPriceWei = parseNftPriceBigNumber.mul(parseQuantityBigNumber).toString();
+
+  try {
+    const allowTransaction = await writeContract({
+      abi: usdcABI,
+      address: erc20TokenAddress.value,
+      functionName: "approve",
+      args: [coffeContractAddress, totalPriceWei],
+    });
+
+    waitForTransaction(allowTransaction);
+
+    return true;
+  } catch (error) {
+    console.error("Error approve ERC20", error);
+    return false;
+  }
+}
+
+
 async function mintNFT(quantity) {
-  console.log(quantity);
   await writeContract({
     abi: coffeeABI,
     address: coffeContractAddress,
     functionName: "mintToken",
     args: [quantity.toString()],
   });
+}
+
+async function executeMint(quantity) {
+  const isApproval = await approveERC20(quantity);
+  console.log(11, isApproval)
+  if (isApproval) {
+    await mintNFT(quantity);
+    console.log("Mint executed ok");
+  } else {
+    console.log("ERC20 approval failed");
+  }
 }
 
 function onTabsChange (index) {
@@ -143,12 +158,10 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped>
+<style scoped>    
 .cardF {
-  background: linear-gradient(
-    to top,
-    rgb(18, 18, 18) 10.6%,
-    rgb(0, 0, 0) 97.7%
-  );
+  background: linear-gradient(to top,
+      rgb(18, 18, 18) 10.6%,
+      rgb(0, 0, 0) 97.7%);
 }
 </style>
