@@ -41,12 +41,12 @@
 </template>
 
 <script setup>
-import { ethers } from "ethers";
 import { readContract, writeContract, waitForTransaction } from "@wagmi/core";
 import { formatEther } from "viem";
 import usdcABI from "@/abis/erc20.json";
 import coffeeABI from "@/abis/coffee.json";
 import { computed } from "vue";
+import { ethers } from "ethers"
 
 const coffeContractAddress = "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846";
 
@@ -158,7 +158,7 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped>
+<style scoped>    
 .cardF {
   background: linear-gradient(to top,
       rgb(18, 18, 18) 10.6%,
