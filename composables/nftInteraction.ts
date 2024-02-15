@@ -10,6 +10,8 @@ async function approveERC20(
   erc20TokenAddress: any,
   nftPrice: any
 ) {
+
+  console.log(121212, quantity, erc20TokenAddress, nftPrice)
   const parseNftPriceBigNumber = BigInt(nftPrice.toString());
   const parseQuantityBigNumber = BigInt(quantity.toString());
 

@@ -38,7 +38,7 @@
         />
       </div>
     </template>
-    {{ symbol }} {{ address }} asd
+    {{ symbol }} {{ address }} {{ balance }}
   </UCard>
 </template>
 

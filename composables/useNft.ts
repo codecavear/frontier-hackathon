@@ -1,6 +1,5 @@
 import { readContract } from "@wagmi/core";
 import coffeeABI from "../abis/coffee.json";
-import usdcABI from "../abis/erc20.json";
 import { onMounted, ref } from "vue";
 
 const coffeContractAddress = "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846";
