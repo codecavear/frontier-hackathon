@@ -2,7 +2,7 @@
   <UCard class="w-[400px] max-w-full cardF">
     <template #header>
       <SpendModal v-model="spendModalOpen" />
-      <UTabs @change="onTabsChange" :ui="{ list: {tab: { active: 'bg-[#3d170b]' }}}" :items="tabsItems" />
+      <UTabs @change="onTabsChange" :ui="{ list: { tab: { active: 'bg-[#3d170b]' } } }" :items="tabsItems" />
     </template>
 
     <div class="flex justify-center items-center">
@@ -22,8 +22,7 @@
 
     <div class="flex justify-center my-4">
       <UKbd>
-        1 {{ nftSymbol }} = {{ formatEther(nftPrice) }}
-        {{ collateralSymbol }}</UKbd>
+        1 {{ collateralSymbol }} = {{ nftPrice }} {{ nftSymbol }}</UKbd>
     </div>
 
     <template #footer>
@@ -31,32 +30,28 @@
         <div class="flex justify-between items-center uppercase text-xs my-2">
           <span>Total:</span>
           <span>
-            {{ formatEther(nftPrice) * quantity }} {{ collateralSymbol }}
+            {{ erc20TokenAddress }}
           </span>
         </div>
-        <UButton color="orange" variant="soft" size="lg" label="Buy" block @click="executeMint(quantity)" />
+        <UButton color="orange" variant="soft" size="lg" label="Buy" block
+        @click="executeMint(quantity, erc20TokenAddress, nftPrice)"
+        />
       </div>
     </template>
+    {{ symbol }} {{ address }} asd
   </UCard>
 </template>
 
 <script setup>
-import { ethers } from "ethers";
-import { readContract, writeContract, waitForTransaction } from "@wagmi/core";
-import { formatEther } from "viem";
-import usdcABI from "@/abis/erc20.json";
-import coffeeABI from "@/abis/coffee.json";
 import { computed } from "vue";
 
-const coffeContractAddress = "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846";
+const { collateralSymbol, erc20TokenAddress, nftPrice, nftSymbol } = useNftDetails();
 
-const collateralSymbol = ref("");
-const nftSymbol = ref("");
-const nftPrice = ref("");
+const { address, balance, symbol } = useCollateralDetails()
+
+
 const quantity = ref(1);
-const erc20TokenAddress = ref("");
-const nftQuantiy = ref(0);
-const spendModalOpen = ref(true)
+const spendModalOpen = ref(false)
 
 const tabsItems = computed(() => [
   {
@@ -81,81 +76,10 @@ function removeOneCoffe() {
   quantity.value -= 1;
 }
 
-async function approveERC20(quantity) {
-  const parseNftPriceBigNumber = ethers.BigNumber.from(nftPrice.value.toString());
-  const parseQuantityBigNumber = ethers.BigNumber.from(quantity.toString());
-
-  const totalPriceWei = parseNftPriceBigNumber.mul(parseQuantityBigNumber).toString();
-
-  try {
-    const allowTransaction = await writeContract({
-      abi: usdcABI,
-      address: erc20TokenAddress.value,
-      functionName: "approve",
-      args: [coffeContractAddress, totalPriceWei],
-    });
-
-    waitForTransaction(allowTransaction);
-
-    return true;
-  } catch (error) {
-    console.error("Error approve ERC20", error);
-    return false;
-  }
-}
-
-
-async function mintNFT(quantity) {
-  await writeContract({
-    abi: coffeeABI,
-    address: coffeContractAddress,
-    functionName: "mintToken",
-    args: [quantity.toString()],
-  });
-}
-
-async function executeMint(quantity) {
-  const isApproval = await approveERC20(quantity);
-  console.log(11, isApproval)
-  if (isApproval) {
-    await mintNFT(quantity);
-    console.log("Mint executed ok");
-  } else {
-    console.log("ERC20 approval failed");
-  }
-}
-
-function onTabsChange (index) {
+function onTabsChange(index) {
   const item = tabsItems.value[index]
-  if(item.label === 'Spend') spendModalOpen.value = true
-  console.log(item)
+  if (item.label === 'Spend') spendModalOpen.value = true
 }
-
-onMounted(async () => {
-  erc20TokenAddress.value = await readContract({
-    abi: coffeeABI,
-    address: coffeContractAddress,
-    functionName: "erc20Token",
-  });
-
-  collateralSymbol.value = await readContract({
-    abi: usdcABI,
-    address: erc20TokenAddress.value,
-    functionName: "symbol",
-  });
-
-  nftSymbol.value = await readContract({
-    abi: coffeeABI,
-    address: coffeContractAddress,
-    functionName: "symbol",
-  });
-
-  nftPrice.value = await readContract({
-    abi: coffeeABI,
-    address: coffeContractAddress,
-    functionName: "mintPrice",
-  });
-});
 </script>
 
 <style scoped>
