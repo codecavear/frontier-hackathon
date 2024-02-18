@@ -12,13 +12,13 @@ import { Hex } from "viem";
 const coffeContractAddress = (process.env.COFFEE_CONTRACT_ADDRESS ||
   "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846") as Hex;
 
+const nftBalance = ref();
+
 export const useNftDetails = () => {
-  const collateralSymbol = ref();
   const erc20TokenAddress = ref();
   const nftPrice = ref();
   const nftSymbol = ref();
   const mintingNft = ref(false);
-  const nftBalance = ref();
 
   const { address: userAddress } = getAccount();
 
@@ -72,16 +72,18 @@ export const useNftDetails = () => {
       }
 
       // mint
-      await writeContract({
+      const mintedToken = await writeContract({
         abi: coffeeABI,
         address: coffeContractAddress,
         functionName: "mintToken",
         args: [quantity.toString()],
       });
+
+      await waitForTransaction(mintedToken);
     } finally {
       mintingNft.value = false;
 
-      await getNftBalance();
+      getNftBalance();
     }
   }
 
@@ -148,10 +150,9 @@ export const useNftDetails = () => {
 
   return {
     erc20TokenAddress,
-    collateralSymbol,
+    nftBalance,
     nftPrice,
     nftSymbol,
-    nftBalance,
     mintNFT,
     mintingNft,
     transferNFT,
