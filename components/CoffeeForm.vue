@@ -48,7 +48,7 @@
         <div class="flex justify-between items-center uppercase text-xs my-2">
           <span>Total:</span>
           <span>
-            {{ formatEther(quantity * Number(nftPrice)) }}
+            {{ formatEther(quantity * Number(nftPrice) || 0n) }}
           </span>
         </div>
         <UButton
