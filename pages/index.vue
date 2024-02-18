@@ -18,7 +18,7 @@
       </UContainer>
 
       <div class="flex justify-center items-end h-[70vh]">
-        <CoffeForm />
+        <CoffeeForm />
       </div>
     </div>
     <!-- Seccion 2 -->
@@ -39,7 +39,7 @@
     <UContainer>
       <div class="grid grid-cols-2 h-[80vh] items-center gap-4">
         <div class="flex gap-3 flex-col content-start text-start">
-          <h3 class="fontC">Easy transaction</h3>
+          <h3 class="fontCgg">Easy transaction</h3>
           <h1 class="text-3xl">Buy coffee on the go</h1>
           <p>
             Using either your email, phone number, social accounts or blockchain
@@ -70,7 +70,7 @@
           </div>
 
           <div class="flex gap-3 flex-col content-start text-start">
-            <h3 class="fontC">Sell coffee easily</h3>
+            <h3 class="fontCg">Sell coffee easily</h3>
             <h1 class="text-3xl">Setup a store in under a minute</h1>
             <p>
               Simple but power technology to help you sell your coffee and own
@@ -105,7 +105,7 @@
 
         <div class="flex flex-col items-center h-[70vh] justify-between">
           <div class="flex gap-4">
-            <p class="text-7xl fontC font-semibold">100</p>
+            <p class="text-7xl fontCg font-semibold">100</p>
             <div class="items-center justify-center flex flex-col">
               <p>Hola</p>
               <p>Hola</p>
@@ -113,20 +113,20 @@
             </div>
           </div>
           <div class="flex gap-4">
-            <p class="text-7xl fontC font-semibold">100</p>
+            <p class="text-7xl fontCg font-semibold">100</p>
             <div class="items-center justify-center flex flex-col">
               <p>Hola</p>
               <p>Hola</p>
             </div>
           </div>
           <div class="flex gap-4">
-            <p class="text-7xl fontC font-semibold">100</p>
+            <p class="text-7xl fontCg font-semibold">100</p>
             <div class="items-center justify-center flex flex-col">
               <p>Hola</p>
             </div>
           </div>
           <div class="flex gap-4">
-            <p class="text-7xl fontC font-semibold">100</p>
+            <p class="text-7xl fontCg font-semibold">100</p>
             <div class="items-center justify-center flex flex-col">
               <p>Hola</p>
             </div>
@@ -157,7 +157,7 @@
           >
             <UAvatar :src="member.avatar" size="3xl" />
             <p class="text-lg">{{ member.name }}</p>
-            <p class="text-lg">{{ member.position }}</p>
+            <p class="text text-gray-400">{{ member.position }}</p>
             <UIcon name="i-jam-linkedin" dynamic />
           </div>
         </div>
@@ -175,17 +175,17 @@ const team = [
   },
   {
     name: "Nahuel Salto",
-    position: "Senior Backend Developer",
+    position: "Sr Backend Developer",
     avatar: "/img/team/nahuel.jpg",
   },
   {
     name: "Conrado Cañas",
-    position: "Senior Frontend Engineer",
+    position: "Sr Frontend Engineer",
     avatar: "/img/team/conrado.jpg",
   },
   {
     name: "Ailen Gonzalez",
-    position: "Ui Developer",
+    position: "UI Developer",
     avatar: "/img/team/ailen.jpg",
   },
   {
@@ -214,9 +214,13 @@ const team = [
   background-position: center;
 }
 
-.fontC {
+.fontCg {
   background: -webkit-linear-gradient(#eb5d47, #a933b2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.fontC {
+  color: grey;
 }
 </style>

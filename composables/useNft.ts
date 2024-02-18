@@ -12,23 +12,36 @@ import { Hex } from "viem";
 const coffeContractAddress = (process.env.COFFEE_CONTRACT_ADDRESS ||
   "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846") as Hex;
 
+const nftBalance = ref();
+
 export const useNftDetails = () => {
-  const collateralSymbol = ref();
   const erc20TokenAddress = ref();
   const nftPrice = ref();
   const nftSymbol = ref();
   const mintingNft = ref(false);
-  const nftBalance = ref();
+  const toast = useToast()
 
   const { address: userAddress } = getAccount();
 
   async function getNftBalance() {
-    nftBalance.value = await readContract({
-      abi: coffeeABI,
-      address: coffeContractAddress,
-      functionName: "balanceOf",
-      args: [userAddress],
-    });
+    if (!userAddress) {
+      console.error("user address not provided");
+      return;
+    }
+
+    try {
+      const balance = await readContract({
+        abi: coffeeABI,
+        address: coffeContractAddress,
+        functionName: "balanceOf",
+        args: [userAddress],
+      });
+
+      console.log("Balance:", balance);
+      nftBalance.value = balance ? balance : 0;
+    } catch (error) {
+      console.error("Error getting nft balance", error);
+    }
   }
 
   async function mintNFT(quantity: number) {
@@ -39,6 +52,8 @@ export const useNftDetails = () => {
 
     mintingNft.value = true;
     try {
+      const totalPrice = BigInt(nftPrice.value) * BigInt(quantity);
+
       const currentAllowance = await readContract({
         abi: erc20ABI,
         address: erc20TokenAddress.value as Hex,
@@ -46,29 +61,31 @@ export const useNftDetails = () => {
         args: [userAddress, coffeContractAddress],
       });
 
-      if (BigInt(currentAllowance) < BigInt(quantity)) {
-        // approve
+      if (BigInt(currentAllowance) < totalPrice) {
         const approvalTransaction = await writeContract({
           abi: erc20ABI,
           address: erc20TokenAddress.value as Hex,
           functionName: "approve",
-          args: [coffeContractAddress, BigInt(quantity)],
+          args: [coffeContractAddress, BigInt(totalPrice)],
         });
 
         await waitForTransaction(approvalTransaction);
       }
 
       // mint
-      await writeContract({
+      const mintedToken = await writeContract({
         abi: coffeeABI,
         address: coffeContractAddress,
         functionName: "mintToken",
         args: [quantity.toString()],
       });
+
+      await waitForTransaction(mintedToken);
     } finally {
       mintingNft.value = false;
+      toast.add({ title: 'Mint successful!', icon: "i-heroicons-check-circle", description: `You now have ${quantity} more COFFs in your account!`})
 
-      await getNftBalance();
+      getNftBalance();
     }
   }
 
@@ -124,14 +141,20 @@ export const useNftDetails = () => {
       address: coffeContractAddress,
       functionName: "symbol",
     });
+
+    nftBalance.value = await readContract({
+      abi: coffeeABI,
+      address: coffeContractAddress,
+      functionName: "balanceOf",
+      args: [userAddress],
+    });
   });
 
   return {
     erc20TokenAddress,
-    collateralSymbol,
+    nftBalance,
     nftPrice,
     nftSymbol,
-    nftBalance,
     mintNFT,
     mintingNft,
     transferNFT,

@@ -12,14 +12,16 @@ export const useCollateralDetails = () => {
 
   onMounted(async() => {
     if(!balance.value){
-      getCollateralBalance()
+      getCollateralBalance();
+      getCollateralSymbol();
     }
   })
 
   watch(
     () => erc20TokenAddress.value,
     async() => {
-       getCollateralBalance()
+       getCollateralBalance();
+       getCollateralSymbol();
     }
   );
 
@@ -33,10 +35,18 @@ export const useCollateralDetails = () => {
     });
   }
 
+  async function getCollateralSymbol(){
+    if(!erc20TokenAddress.value) return;
+    symbol.value = await readContract({
+      abi: usdcABI,
+      address: erc20TokenAddress.value,
+      functionName: "symbol",
+    });
+  }
+
   return {
     address: erc20TokenAddress,
     balance,
     symbol,
-    getCollateralBalance
   };
 };
