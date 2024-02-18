@@ -67,8 +67,6 @@
 </template>
 
 <script setup>
-import { formatEther } from "viem";
-
 const { nftPrice, nftSymbol, mintNFT, mintingNft } = useNftDetails();
 const { symbol: collateralSymbol } = useCollateralDetails();
 
