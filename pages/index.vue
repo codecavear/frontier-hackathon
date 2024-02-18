@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="font-oxanium">
     <!-- Seccion 1 -->
     <div
-      class="grid grid-cols-2 items-end content-start text-start h-screen cardC"
+      class="grid grid-cols-2 items-end content-start text-start h-[80vh] cardC"
     >
       <UContainer>
         <div class="flex flex-col gap-3">
@@ -37,7 +37,7 @@
     </UContainer>
     <!-- Seccion 3 -->
     <UContainer>
-      <div class="grid grid-cols-2 h-[80vh] items-center">
+      <div class="grid grid-cols-2 h-[80vh] items-center gap-4">
         <div class="flex gap-3 flex-col content-start text-start">
           <h3 class="text-orange-700">Easy transaction</h3>
           <h1 class="text-3xl">Buy coffee on the go</h1>
@@ -52,21 +52,21 @@
         </div>
 
         <div class="grid grid-rows-3 grid-flow-col gap-4">
-          <div class="row-start-2 row-span-2 ...">
-            <img src="/img/Group14.png" />
-          </div>
           <div class="row-end-3 row-span-2 ...">
             <img src="/img/Wallet1.png" alt="" />
+          </div>
+          <div class="row-start-2 row-span-2 ...">
+            <img src="/img/Group14.png" />
           </div>
         </div>
       </div>
     </UContainer>
     <!-- Seccion 4 -->
-    <div class="h-screen cardCS">
+    <div class="h-screen justify-center flex items-center cardCS">
       <UContainer>
-        <div class="grid grid-cols-2 items-center h-[70vh]">
+        <div class="grid grid-cols-2 items-center">
           <div class="flex justify-center">
-            <img src="/img/Wallet1.png" alt="" />
+            <!-- <img src="/img/Wallet1.png" alt="" /> -->
           </div>
 
           <div class="flex gap-3 flex-col content-start text-start">
@@ -86,53 +86,125 @@
       </UContainer>
     </div>
     <!-- Seccion 5 -->
-    <UContainer>
-      <div class="grid grid-rows-4 grid-flow-col gap-4 h-[80vh]">
-        <div class="row-span-4 col-span-1 ... bg-1"></div>
-        <div class="row-span-2 col-span-2 ... bg-1"></div>
-        <div class="row-span-2 ... bg-1"></div>
-        <div class="row-span-2 ... bg-1"></div>
+    <UContainer class="grid grid-cols-2">
+      <div class="cols-1">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut ab nulla
+          consequatur. Exercitationem id beatae numquam voluptatum molestias
+          saepe possimus consequuntur dolorem, incidunt quos ad ipsa fuga
+          repellendus ipsam placeat.
+        </p>
+      </div>
+      <div class="cols-1">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          neque hic asperiores at praesentium sint sequi similique reprehenderit
+          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
+          Porro voluptas harum temporibus dolorum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          neque hic asperiores at praesentium sint sequi similique reprehenderit
+          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
+          Porro voluptas harum temporibus dolorum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          neque hic asperiores at praesentium sint sequi similique reprehenderit
+          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
+          Porro voluptas harum temporibus dolorum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          neque hic asperiores at praesentium sint sequi similique reprehenderit
+          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
+          Porro voluptas harum temporibus dolorum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          neque hic asperiores at praesentium sint sequi similique reprehenderit
+          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
+          Porro voluptas harum temporibus dolorum.
+        </p>
       </div>
     </UContainer>
-    <!-- Seccion 6 -->
-    <UContainer>
-      <div class="grid grid-cols-2 h-[80vh] items-center">
-        <div class="flex gap-3 flex-col content-start text-start">
-          <h3 class="text-orange-700">About the app</h3>
-          <h1 class="text-3xl">About the app</h1>
+    <!-- Seccion 6 The Team -->
+    <div class="backWorld">
+      <UContainer class="flex justify-end">
+        <div class="w-[80vh] text-end">
+          <h3 class="text-4xl mb-4">ABOUT US</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-            dignissimos doloremque atque? Error omnis eius minus tempore nam
-            natus hic reprehenderit, corrupti quasi. Recusandae commodi iure,
-            hic illo error nam.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+            cumque autem delectus, odio quia inventore perspiciatis sequi, ullam
+            dolor eveniet totam. Corporis nesciunt non sapiente ipsum, laborum
+            aperiam deleniti cumque?
           </p>
-          <div>
-            <UButton variant="ghost" color="purple"> Learn more </UButton>
+        </div>
+      </UContainer>
+
+      <UContainer class="h-[40vh] flex justify-center items-center">
+        <div class="grid grid-cols-5 gap-3">
+          <div
+            v-for="member in team"
+            :key="member.name"
+            class="col-span-1 items-center"
+          >
+            <UAvatar :src="member.avatar" size="3xl" />
+            <p class="text-lg">{{ member.name }}</p>
+            <p class="text-lg">{{ member.position }}</p>
+            <UIcon name="i-jam-linkedin" dynamic />
           </div>
         </div>
-        <div class="grid grid-rows-3 grid-flow-col gap-4">
-          <div class="row-end-3 row-span-2 ...">
-            <img src="/img/Wallet1.png" alt="" />
-          </div>
-          <div class="row-start-2 row-span-2 ...">
-            <img src="/img/Group14.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </UContainer>
+      </UContainer>
+    </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const team = [
+  {
+    name: "Lighuen Restanio",
+    position: "Frontend Developer",
+    avatar: "/img/team/lighuen.jpg",
+  },
+  {
+    name: "Nahuel Salto",
+    position: "Senior Backend developer",
+    avatar: "/img/team/nahuel.jpg",
+  },
+  {
+    name: "Conrado Cañas",
+    position: "Senior Frontend enginier",
+    avatar: "/img/team/conrado.jpg",
+  },
+  {
+    name: "Ailen Gonzalez",
+    position: "Ui Developer",
+    avatar: "/img/team/ailen.jpg",
+  },
+  {
+    name: "Delfina Cañas",
+    position: "Fullstack Developer",
+    avatar: "/img/team/Delfina.jpg",
+  },
+];
+</script>
 
 <style scoped>
 .cardC {
   background: radial-gradient(circle at 1000px 150px, #612333 1%, #121212 23%);
 }
 .cardCS {
-  background: radial-gradient(circle at 400px 300px, #612333 1%, #121212 23%);
+  background: radial-gradient(circle at 430px 320px, #612333 1%, #121212 23%);
 }
 .bg-1 {
   background-color: #181818;
+}
+
+.backWorld {
+  background-image: url("/img/svg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 </style>
