@@ -65,8 +65,7 @@ createWeb3Modal({
   connectorImages,
   featuredWalletIds,
   themeVariables: {
-    "--w3m-color-mix": "#00",
-    "--w3m-accent": "#ffffff",
+    "--w3m-color-mix": "#000",
   },
 });
 
