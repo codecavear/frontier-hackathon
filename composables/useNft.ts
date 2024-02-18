@@ -19,6 +19,7 @@ export const useNftDetails = () => {
   const nftPrice = ref();
   const nftSymbol = ref();
   const mintingNft = ref(false);
+  const toast = useToast()
 
   const { address: userAddress } = getAccount();
 
@@ -70,6 +71,7 @@ export const useNftDetails = () => {
         await waitForTransaction(mintedToken);
       } finally {
       mintingNft.value = false;
+      toast.add({ title: 'Mint successful!', icon: "i-heroicons-check-circle", description: `You now have ${quantity} more COFFs in your account!`})
 
       getNftBalance();
     }
