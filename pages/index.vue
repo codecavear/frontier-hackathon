@@ -39,7 +39,7 @@
     <UContainer>
       <div class="grid grid-cols-2 h-[80vh] items-center gap-4">
         <div class="flex gap-3 flex-col content-start text-start">
-          <h3 class="text-orange-700">Easy transaction</h3>
+          <h3 class="fontC">Easy transaction</h3>
           <h1 class="text-3xl">Buy coffee on the go</h1>
           <p>
             Using either your email, phone number, social accounts or blockchain
@@ -47,7 +47,7 @@
             coffee.
           </p>
           <div>
-            <UButton variant="ghost" color="purple"> Learn more </UButton>
+            <UButton variant="ghost" color="orange"> Learn more </UButton>
           </div>
         </div>
 
@@ -70,7 +70,7 @@
           </div>
 
           <div class="flex gap-3 flex-col content-start text-start">
-            <h3 class="text-orange-700">Sell coffee easily</h3>
+            <h3 class="fontC">Sell coffee easily</h3>
             <h1 class="text-3xl">Setup a store in under a minute</h1>
             <p>
               Simple but power technology to help you sell your coffee and own
@@ -79,53 +79,59 @@
               No problem, we got you covered in seconds.
             </p>
             <div>
-              <UButton variant="ghost" color="purple"> Create account </UButton>
+              <UButton variant="ghost" color="orange"> Create account </UButton>
             </div>
           </div>
         </div>
       </UContainer>
     </div>
-    <!-- Seccion 5 -->
-    <UContainer class="grid grid-cols-2">
-      <div class="cols-1">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut ab nulla
-          consequatur. Exercitationem id beatae numquam voluptatum molestias
-          saepe possimus consequuntur dolorem, incidunt quos ad ipsa fuga
-          repellendus ipsam placeat.
-        </p>
-      </div>
-      <div class="cols-1">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-          neque hic asperiores at praesentium sint sequi similique reprehenderit
-          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
-          Porro voluptas harum temporibus dolorum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-          neque hic asperiores at praesentium sint sequi similique reprehenderit
-          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
-          Porro voluptas harum temporibus dolorum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-          neque hic asperiores at praesentium sint sequi similique reprehenderit
-          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
-          Porro voluptas harum temporibus dolorum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-          neque hic asperiores at praesentium sint sequi similique reprehenderit
-          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
-          Porro voluptas harum temporibus dolorum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-          neque hic asperiores at praesentium sint sequi similique reprehenderit
-          assumenda est, reiciendis veritatis optio exercitationem blanditiis.
-          Porro voluptas harum temporibus dolorum.
-        </p>
+    <!-- Seccion 5 Numbers-->
+
+    <UContainer>
+      <h3 class="text-2xl">COFF NUMBERS</h3>
+      <div class="grid grid-cols-2 h-[80vh] gap-4">
+        <div class="flex gap-3 flex-col content-start text-start">
+          <h3 class="text-7xl">Not a cup,</h3>
+          <h3 class="text-7xl">Just a coffee</h3>
+          <p>
+            Using either your email, phone number, social accounts or blockchain
+            wallets, you can create an account in seconds and start buying
+            coffee.
+          </p>
+          <div>
+            <UButton variant="ghost" color="orange"> Learn more </UButton>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center h-[70vh] justify-between">
+          <div class="flex gap-4">
+            <p class="text-7xl fontC font-semibold">100</p>
+            <div class="items-center justify-center flex flex-col">
+              <p>Hola</p>
+              <p>Hola</p>
+              <p>Hola</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <p class="text-7xl fontC font-semibold">100</p>
+            <div class="items-center justify-center flex flex-col">
+              <p>Hola</p>
+              <p>Hola</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <p class="text-7xl fontC font-semibold">100</p>
+            <div class="items-center justify-center flex flex-col">
+              <p>Hola</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <p class="text-7xl fontC font-semibold">100</p>
+            <div class="items-center justify-center flex flex-col">
+              <p>Hola</p>
+            </div>
+          </div>
+        </div>
       </div>
     </UContainer>
     <!-- Seccion 6 The Team -->
@@ -169,12 +175,12 @@ const team = [
   },
   {
     name: "Nahuel Salto",
-    position: "Senior Backend developer",
+    position: "Senior Backend Developer",
     avatar: "/img/team/nahuel.jpg",
   },
   {
     name: "Conrado Cañas",
-    position: "Senior Frontend enginier",
+    position: "Senior Frontend Engineer",
     avatar: "/img/team/conrado.jpg",
   },
   {
@@ -185,7 +191,7 @@ const team = [
   {
     name: "Delfina Cañas",
     position: "Fullstack Developer",
-    avatar: "/img/team/Delfina.jpg",
+    avatar: "/img/team/delfina.jpg",
   },
 ];
 </script>
@@ -206,5 +212,11 @@ const team = [
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.fontC {
+  background: -webkit-linear-gradient(#eb5d47, #a933b2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
