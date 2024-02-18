@@ -52,21 +52,26 @@ export const useNftDetails = () => {
 
     mintingNft.value = true;
     try {
+      const totalPrice = BigInt(nftPrice.value) * BigInt(quantity);
+
       const currentAllowance = await readContract({
         abi: erc20ABI,
         address: erc20TokenAddress.value as Hex,
         functionName: "allowance",
         args: [userAddress, coffeContractAddress],
       });
-      console.log("currentAllowance:", currentAllowance);
 
-      if (BigInt(currentAllowance) < BigInt(quantity)) {
-        // approve
+      console.log("Quantity:", quantity);
+      console.log("NFT Price:", nftPrice.value);
+      console.log("Total Cost:", totalPrice.toString());
+      console.log("Current Allowance:", currentAllowance);
+
+      if (BigInt(currentAllowance) < totalPrice) {
         const approvalTransaction = await writeContract({
           abi: erc20ABI,
           address: erc20TokenAddress.value as Hex,
           functionName: "approve",
-          args: [coffeContractAddress, BigInt(quantity)],
+          args: [coffeContractAddress, BigInt(totalPrice)],
         });
 
         await waitForTransaction(approvalTransaction);
@@ -137,6 +142,13 @@ export const useNftDetails = () => {
       abi: coffeeABI,
       address: coffeContractAddress,
       functionName: "symbol",
+    });
+
+    nftBalance.value = await readContract({
+      abi: coffeeABI,
+      address: coffeContractAddress,
+      functionName: "balanceOf",
+      args: [userAddress],
     });
   });
 
