@@ -23,12 +23,25 @@ export const useNftDetails = () => {
   const { address: userAddress } = getAccount();
 
   async function getNftBalance() {
-    nftBalance.value = await readContract({
-      abi: coffeeABI,
-      address: coffeContractAddress,
-      functionName: "balanceOf",
-      args: [userAddress],
-    });
+    if (!userAddress) {
+      console.error("user address not provided");
+      return;
+    }
+
+    try {
+      const balance = await readContract({
+        abi: coffeeABI,
+        address: coffeContractAddress,
+        functionName: "balanceOf",
+        args: [userAddress],
+      });
+      console.log("lastest nftBalance:", nftBalance.value);
+
+      console.log("Balance:", balance);
+      nftBalance.value = balance ? balance : 0;
+    } catch (error) {
+      console.error("Error getting nft balance", error);
+    }
   }
 
   async function mintNFT(quantity: number) {
@@ -45,6 +58,7 @@ export const useNftDetails = () => {
         functionName: "allowance",
         args: [userAddress, coffeContractAddress],
       });
+      console.log("currentAllowance:", currentAllowance);
 
       if (BigInt(currentAllowance) < BigInt(quantity)) {
         // approve
