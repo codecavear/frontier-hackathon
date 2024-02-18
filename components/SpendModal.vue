@@ -10,9 +10,13 @@
         <h1 class="text-2xl">Spend your COFF</h1>
       </template>
 
-      <div class="gap-4 flex flex-col text-center">
+      <div class="gap-4 flex flex-col">
         <!-- QR -->
-        <QrcodeStream @decode="onDecode"></QrcodeStream>
+        <qrcode-stream @detect="onDetect"></qrcode-stream>
+        <div>
+          <label>Store address</label>
+          <UInput label="Store address" v-model="toAddress"></UInput>
+        </div>
       </div>
       <template #footer>
         <UButton block label="Spend" color="orange" variant="soft" size="lg" />
@@ -22,16 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import { QrcodeStream } from "vue-qrcode-reader";
+import { QrcodeStream } from 'vue-qrcode-reader'
 
 const props = defineProps(["isOpen"]);
 const emit = defineEmits(["update:isOpen"]);
 
-const onDecode = (code: any) => {
-  console.log(`Decode text from QR code is ${code}`);
-};
+const toAddress = ref("")
 
-const onLoaded = () => {
-  console.log(`Ready to start scanning barcodes`);
+const onDetect = (detectedCodes: any) => {
+  toAddress.value = detectedCodes[0].rawValue;
 };
 </script>
