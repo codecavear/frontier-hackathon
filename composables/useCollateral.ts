@@ -12,22 +12,22 @@ export const useCollateralDetails = () => {
 
   onMounted(async() => {
     if(!balance.value){
-      getUserBalance(erc20TokenAddress.value)
+      getCollateralBalance()
     }
   })
 
   watch(
     () => erc20TokenAddress.value,
-    async(newValue) => {
-       getUserBalance(newValue)
+    async() => {
+       getCollateralBalance()
     }
   );
 
-  async function getUserBalance(address){
-    if(!address) return;
+  async function getCollateralBalance(){
+    if(!userAddress || !erc20TokenAddress.value) return;
     balance.value = await readContract({
       abi: usdcABI,
-      address: address,
+      address: erc20TokenAddress.value,
       functionName: "balanceOf",
       args: [userAddress],
     });
@@ -37,5 +37,6 @@ export const useCollateralDetails = () => {
     address: erc20TokenAddress,
     balance,
     symbol,
+    getCollateralBalance
   };
 };

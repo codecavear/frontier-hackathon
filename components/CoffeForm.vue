@@ -54,7 +54,8 @@
           size="lg"
           label="Buy"
           block
-          @click="executeMint(quantity, erc20TokenAddress, nftPrice)"
+          @click="mintNfts()"
+          :loading="mintingNft"
         />
       </div>
     </template>
@@ -64,10 +65,17 @@
 <script setup>
 import { computed } from "vue";
 
-const { collateralSymbol, erc20TokenAddress, nftPrice, nftSymbol } =
-  useNftDetails();
+const {
+  collateralSymbol,
+  erc20TokenAddress,
+  nftPrice,
+  nftSymbol,
+  mintNFT,
+  mintingNft,
+} = useNftDetails();
 
-const { address, balance, symbol } = useCollateralDetails();
+const { address, balance, symbol, getCollateralBalance } =
+  useCollateralDetails();
 
 const quantity = ref(1);
 const spendModalOpen = ref(false);
@@ -84,6 +92,11 @@ const tabsItems = computed(() => [
     disabled: true,
   },
 ]);
+
+const mintNfts = async () => {
+  await mintNFT(quantity.value);
+  getCollateralBalance();
+};
 
 function addOneCoffe() {
   quantity.value += 1;

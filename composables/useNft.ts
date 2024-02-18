@@ -1,6 +1,7 @@
 import {
   erc20ABI,
   readContract,
+  getAccount,
   waitForTransaction,
   writeContract,
 } from "@wagmi/core";
@@ -11,38 +12,50 @@ import { Hex } from "viem";
 const coffeContractAddress = "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846";
 
 export const useNftDetails = () => {
+
   const collateralSymbol = ref();
   const erc20TokenAddress = ref();
   const nftPrice = ref();
   const nftSymbol = ref();
+  const mintingNft = ref(false);
 
-  async function mintNFT(userAddress: Hex, quantity: number) {
-    const currentAllowance = await readContract({
-      abi: erc20ABI,
-      address: erc20TokenAddress.value as Hex,
-      functionName: "allowance",
-      args: [userAddress, coffeContractAddress],
-    });
+  const { address } = getAccount();
 
-    if (BigInt(currentAllowance) < BigInt(quantity)) {
-      // approve
-      const approvalTransaction = await writeContract({
+  async function mintNFT(quantity: number) {
+    mintingNft.value = true;
+    try {
+      const currentAllowance = await readContract({
         abi: erc20ABI,
         address: erc20TokenAddress.value as Hex,
-        functionName: "approve",
-        args: [coffeContractAddress, BigInt(quantity)],
+        functionName: "allowance",
+        args: [address, coffeContractAddress],
       });
-
-      await waitForTransaction(approvalTransaction);
+  
+      if (BigInt(currentAllowance) < BigInt(quantity)) {
+        // approve
+        const approvalTransaction = await writeContract({
+          abi: erc20ABI,
+          address: erc20TokenAddress.value as Hex,
+          functionName: "approve",
+          args: [coffeContractAddress, BigInt(quantity)],
+        });
+  
+        await waitForTransaction(approvalTransaction);
+      }
+  
+      // mint
+      await writeContract({
+        abi: coffeeABI,
+        address: coffeContractAddress,
+        functionName: "mintToken",
+        args: [quantity.toString()],
+      });
+  
+    } finally {
+      mintingNft.value = false;
     }
 
-    // mint
-    await writeContract({
-      abi: coffeeABI,
-      address: coffeContractAddress,
-      functionName: "mintToken",
-      args: [quantity.toString()],
-    });
+    
   }
 
   async function redeemNFT(tokenIds) {
@@ -101,6 +114,7 @@ export const useNftDetails = () => {
     nftPrice,
     nftSymbol,
     mintNFT,
+    mintingNft,
     transferNFT,
   };
 };
