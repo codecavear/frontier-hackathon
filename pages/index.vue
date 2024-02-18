@@ -151,7 +151,7 @@
           >
             <UAvatar :src="member.avatar" size="3xl" />
             <p class="text-lg">{{ member.name }}</p>
-            <p class="text-lg">{{ member.position }}</p>
+            <p class="text text-gray-400">{{ member.position }}</p>
             <UIcon name="i-jam-linkedin" dynamic />
           </div>
         </div>
@@ -169,17 +169,17 @@ const team = [
   },
   {
     name: "Nahuel Salto",
-    position: "Senior Backend developer",
+    position: "Sr Backend Developer",
     avatar: "/img/team/nahuel.jpg",
   },
   {
     name: "Conrado Cañas",
-    position: "Senior Frontend enginier",
+    position: "Sr Frontend Engineer",
     avatar: "/img/team/conrado.jpg",
   },
   {
     name: "Ailen Gonzalez",
-    position: "Ui Developer",
+    position: "UI Developer",
     avatar: "/img/team/ailen.jpg",
   },
   {
