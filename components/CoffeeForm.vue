@@ -49,6 +49,7 @@
           <span>Total:</span>
           <span>
             {{ formatEther(quantity * Number(nftPrice) || 0n) }}
+            {{ collateralSymbol }}
           </span>
         </div>
         <UButton
