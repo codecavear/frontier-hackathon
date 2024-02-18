@@ -37,7 +37,10 @@
     </div>
 
     <div class="flex justify-center my-4">
-      <UKbd> 1 {{ collateralSymbol }} = {{ nftPrice }} {{ nftSymbol }}</UKbd>
+      <UKbd>
+        1 {{ collateralSymbol }} = {{ formatEther(nftPrice || 0n) }}
+        {{ nftSymbol }}</UKbd
+      >
     </div>
 
     <template #footer>
@@ -45,7 +48,7 @@
         <div class="flex justify-between items-center uppercase text-xs my-2">
           <span>Total:</span>
           <span>
-            {{ erc20TokenAddress }}
+            {{ formatEther(quantity * Number(nftPrice)) }}
           </span>
         </div>
         <UButton
@@ -54,7 +57,7 @@
           size="lg"
           label="Buy"
           block
-          @click="mintNfts()"
+          @click="mintNFT(quantity)"
           :loading="mintingNft"
         />
       </div>
@@ -63,19 +66,10 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { formatEther } from "viem";
 
-const {
-  collateralSymbol,
-  erc20TokenAddress,
-  nftPrice,
-  nftSymbol,
-  mintNFT,
-  mintingNft,
-} = useNftDetails();
-
-const { address, balance, symbol, getCollateralBalance } =
-  useCollateralDetails();
+const { nftPrice, nftSymbol, mintNFT, mintingNft } = useNftDetails();
+const { symbol: collateralSymbol } = useCollateralDetails();
 
 const quantity = ref(1);
 const spendModalOpen = ref(false);
@@ -92,11 +86,6 @@ const tabsItems = computed(() => [
     disabled: true,
   },
 ]);
-
-const mintNfts = async () => {
-  await mintNFT(quantity.value);
-  getCollateralBalance();
-};
 
 function addOneCoffe() {
   quantity.value += 1;
