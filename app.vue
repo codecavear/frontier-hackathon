@@ -66,7 +66,6 @@ createWeb3Modal({
   featuredWalletIds,
   themeVariables: {
     "--w3m-color-mix": "#00",
-    "--w3m-color-mix-strength": 60,
     "--w3m-accent": "#ffffff",
   },
 });
@@ -96,6 +95,8 @@ useSeoMeta({
     <main class="flex-1">
       <NuxtPage />
     </main>
+
+    <UNotifications />
     <TheFooter />
   </div>
 </template>

@@ -1,12 +1,13 @@
 <template>
-  <UButton
+  <!-- <UButton
     size="md"
     color="orange"
     variant="soft"
     :label="!isConnected ? 'Login' : shortenAddress(address)"
     :trailing="false"
     @click="open"
-  />
+  /> -->
+  <w3m-button />
 </template>
 
 <script setup>
