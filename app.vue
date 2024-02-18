@@ -64,6 +64,11 @@ createWeb3Modal({
   chains,
   connectorImages,
   featuredWalletIds,
+  themeVariables: {
+    "--w3m-color-mix": "#00",
+    "--w3m-color-mix-strength": 60,
+    "--w3m-accent": "#ffffff",
+  },
 });
 
 const links = [
@@ -89,7 +94,7 @@ useSeoMeta({
   <div class="flex flex-col h-screen">
     <TheHeader />
     <main class="flex-1">
-        <NuxtPage />
+      <NuxtPage />
     </main>
     <TheFooter />
   </div>

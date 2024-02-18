@@ -34,8 +34,7 @@
           </span>
         </div>
         <UButton color="orange" variant="soft" size="lg" label="Buy" block
-        @click="executeMint(quantity, erc20TokenAddress, nftPrice)"
-        />
+          @click="executeMint(quantity, erc20TokenAddress, nftPrice)" />
       </div>
     </template>
     {{ symbol }} {{ address }} {{ balance }}
@@ -82,10 +81,9 @@ function onTabsChange(index) {
 }
 </script>
 
-<style scoped>
-.cardF {
-  background: linear-gradient(to top,
-      rgb(18, 18, 18) 10.6%,
-      rgb(0, 0, 0) 97.7%);
-}
+<style scoped>    .cardF {
+      background: linear-gradient(to top,
+          rgb(18, 18, 18) 10.6%,
+          rgb(0, 0, 0) 97.7%);
+    }
 </style>
