@@ -16,35 +16,27 @@ export const useNftDetails = () => {
   const nftPrice = ref();
   const nftSymbol = ref();
 
-  async function approveERC20(userAddress, quantity) {
-    try {
-      const currentAllowance = await readContract({
+  async function mintNFT(userAddress: Hex, quantity: number) {
+    const currentAllowance = await readContract({
+      abi: erc20ABI,
+      address: erc20TokenAddress.value as Hex,
+      functionName: "allowance",
+      args: [userAddress, coffeContractAddress],
+    });
+
+    if (BigInt(currentAllowance) < BigInt(quantity)) {
+      // approve
+      const approvalTransaction = await writeContract({
         abi: erc20ABI,
         address: erc20TokenAddress.value as Hex,
-        functionName: "allowance",
-        args: [userAddress, coffeContractAddress],
+        functionName: "approve",
+        args: [coffeContractAddress, BigInt(quantity)],
       });
 
-      if (BigInt(currentAllowance) < BigInt(quantity)) {
-        const approvalTransaction = await writeContract({
-          abi: erc20ABI,
-          address: erc20TokenAddress.value as Hex,
-          functionName: "approve",
-          args: [coffeContractAddress, quantity.toString()],
-        });
-        await waitForTransaction(approvalTransaction);
-
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      console.error("Error checking ERC20 allowance", error);
-      throw error;
+      await waitForTransaction(approvalTransaction);
     }
-  }
 
-  async function mintNFT(quantity: number) {
+    // mint
     await writeContract({
       abi: coffeeABI,
       address: coffeContractAddress,
@@ -68,7 +60,7 @@ export const useNftDetails = () => {
     }
   }
 
-  async function transferNFT(tokenIds, newOwner) {
+  async function transferNFT(tokenIds: String[], newOwner: Hex) {
     try {
       const swapTransaction = await writeContract({
         abi: coffeeABI,
@@ -108,7 +100,6 @@ export const useNftDetails = () => {
     collateralSymbol,
     nftPrice,
     nftSymbol,
-    approveERC20,
     mintNFT,
     transferNFT,
   };
