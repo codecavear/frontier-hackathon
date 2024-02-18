@@ -18,7 +18,7 @@
       </UContainer>
 
       <div class="flex justify-center items-end h-[70vh]">
-        <CoffeForm />
+        <CoffeeForm />
       </div>
     </div>
     <!-- Seccion 2 -->
