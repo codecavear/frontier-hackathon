@@ -9,8 +9,8 @@ import coffeeABI from "../abis/coffee.json";
 import { onMounted, ref } from "vue";
 import { Hex } from "viem";
 
-const coffeContractAddress = (process.env.COFFEE_CONTRACT_ADDRESS ||
-  "0x65Fe8c75Ed4B2e50D4E5E4CEdB2914a5ee7a0846") as Hex;
+const coffeContractAddress = (process.env.NFT_CONTRACT_ADDRESS ||
+  "0x0315D55F2618a1cd941f59A2cB5ed478A7301937") as Hex;
 
 const nftBalance = ref();
 
@@ -19,7 +19,7 @@ export const useNftDetails = () => {
   const nftPrice = ref();
   const nftSymbol = ref();
   const mintingNft = ref(false);
-  const toast = useToast()
+  const toast = useToast();
 
   const { address: userAddress } = getAccount();
 
@@ -83,7 +83,11 @@ export const useNftDetails = () => {
       await waitForTransaction(mintedToken);
     } finally {
       mintingNft.value = false;
-      toast.add({ title: 'Mint successful!', icon: "i-heroicons-check-circle", description: `You now have ${quantity} more COFFs in your account!`})
+      toast.add({
+        title: "Mint successful!",
+        icon: "i-heroicons-check-circle",
+        description: `You now have ${quantity} more COFFs in your account!`,
+      });
 
       getNftBalance();
     }
