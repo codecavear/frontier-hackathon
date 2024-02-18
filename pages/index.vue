@@ -157,7 +157,7 @@
           >
             <UAvatar :src="member.avatar" size="3xl" />
             <p class="text-lg">{{ member.name }}</p>
-            <p class="text text-gray-400">{{ member.position }}</p>
+            <p class="text text-grey-400">{{ member.position }}</p>
             <UIcon name="i-jam-linkedin" dynamic />
           </div>
         </div>

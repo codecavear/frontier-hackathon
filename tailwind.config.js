@@ -8,6 +8,9 @@ module.exports = {
         serif: ["Merriweather", "serif"],
         oxanium: ["Oxanium"],
       },
+      colors: {
+        "grey-400": "#B0B0B0",
+      },
     },
   },
 };
