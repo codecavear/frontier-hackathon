@@ -38,7 +38,7 @@
 
     <div class="flex justify-center my-4">
       <UKbd>
-        1 {{ collateralSymbol }} = {{ formatEther(nftPrice || 0n) }}
+        1 {{ collateralSymbol }} = {{ formatFromEther(nftPrice) }}
         {{ nftSymbol }}</UKbd
       >
     </div>
@@ -48,7 +48,7 @@
         <div class="flex justify-between items-center uppercase text-xs my-2">
           <span>Total:</span>
           <span>
-            {{ formatEther(quantity * Number(nftPrice) || 0n) }}
+            {{ formatFromEther(quantity * Number(nftPrice)) }}
             {{ collateralSymbol }}
           </span>
         </div>
