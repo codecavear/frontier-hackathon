@@ -82,9 +82,9 @@
       },
       {
         "indexed": false,
-        "internalType": "uint16[]",
+        "internalType": "uint16",
         "name": "tokenIds",
-        "type": "uint16[]"
+        "type": "uint16"
       }
     ],
     "name": "NFTsSwapped",
@@ -325,9 +325,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint16[]",
-        "name": "tokenIds",
-        "type": "uint16[]"
+        "internalType": "uint16",
+        "name": "quantity",
+        "type": "uint16"
       }
     ],
     "name": "redeemToken",
@@ -414,19 +414,6 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "newERC20Address",
-        "type": "address"
-      }
-    ],
-    "name": "setERC20Address",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "uint8",
         "name": "newLimit",
         "type": "uint8"
@@ -470,24 +457,6 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint16[]",
-        "name": "tokenIds",
-        "type": "uint16[]"
-      },
-      {
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "swapToken",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "symbol",
     "outputs": [
@@ -495,6 +464,25 @@
         "internalType": "string",
         "name": "",
         "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenByIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -522,6 +510,30 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenOfOwnerByIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
@@ -533,6 +545,19 @@
         "internalType": "string",
         "name": "",
         "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -570,6 +595,24 @@
       }
     ],
     "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "quantity",
+        "type": "uint16"
+      },
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferToken",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
