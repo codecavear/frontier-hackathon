@@ -8,6 +8,8 @@ module.exports = {
         serif: ["Merriweather", "serif"],
         oxanium: ["Oxanium"],
       },
+
     },
   },
+  darkMode: 'class'
 };
