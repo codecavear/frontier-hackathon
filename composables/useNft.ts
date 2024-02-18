@@ -10,7 +10,7 @@ import { onMounted, ref } from "vue";
 import { Hex } from "viem";
 
 const coffeContractAddress = (process.env.NFT_CONTRACT_ADDRESS ||
-  "0x0315D55F2618a1cd941f59A2cB5ed478A7301937") as Hex;
+  "0x5Bf7D89f53A935373aE7CB257dD8D45C07f4D343") as Hex;
 
 const nftBalance = ref();
 
