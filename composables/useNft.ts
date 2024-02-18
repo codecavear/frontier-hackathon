@@ -93,39 +93,39 @@ export const useNftDetails = () => {
     }
   }
 
-  async function redeemNFT(tokenIds: string[]) {
+  async function redeemNFT(quantity: number) {
     try {
       const redeemTransaction = await writeContract({
         abi: coffeeABI,
         address: coffeContractAddress,
         functionName: "redeemToken",
-        args: [tokenIds],
+        args: [quantity],
       });
       await waitForTransaction(redeemTransaction);
       console.log("Redeem ok");
     } catch (error) {
-      console.error("Error redeeming nsfts", error);
+      console.error("Error redeeming nfts", error);
     } finally {
       await getNftBalance();
     }
-  }
+  }  
 
-  async function transferNFT(tokenIds: String[], newOwner: Hex) {
+  async function transferNFT(quantity: number, newOwner: string) {
     try {
-      const swapTransaction = await writeContract({
+      const transferTransaction = await writeContract({
         abi: coffeeABI,
         address: coffeContractAddress,
-        functionName: "swapToken",
-        args: [tokenIds, newOwner],
+        functionName: "transferToken",
+        args: [quantity, newOwner],
       });
-      await waitForTransaction(swapTransaction);
-      console.log("Swap ok");
+      await waitForTransaction(transferTransaction);
+      console.log("Transfer ok");
     } catch (error) {
-      console.error("Error swapping nsfts", error);
+      console.error("Error transferring nfts", error);
     } finally {
       await getNftBalance();
     }
-  }
+  }  
 
   onMounted(async () => {
     erc20TokenAddress.value = await readContract({
