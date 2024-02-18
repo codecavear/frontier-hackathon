@@ -23,13 +23,24 @@ export const useNftDetails = () => {
   const { address: userAddress } = getAccount();
 
   async function getNftBalance() {
-    if(!userAddress) return;
-    nftBalance.value = await readContract({
-      abi: coffeeABI,
-      address: coffeContractAddress,
-      functionName: "balanceOf",
-      args: [userAddress],
-    });
+    if (!userAddress) {
+      console.error("user address not provided");
+      return;
+    }
+
+    try {
+      const balance = await readContract({
+        abi: coffeeABI,
+        address: coffeContractAddress,
+        functionName: "balanceOf",
+        args: [userAddress],
+      });
+
+      console.log("Balance:", balance);
+      nftBalance.value = balance ? balance : 0;
+    } catch (error) {
+      console.error("Error getting nft balance", error);
+    }
   }
 
   async function mintNFT(quantity: number) {
@@ -40,6 +51,8 @@ export const useNftDetails = () => {
 
     mintingNft.value = true;
     try {
+      const totalPrice = BigInt(nftPrice.value) * BigInt(quantity);
+
       const currentAllowance = await readContract({
         abi: erc20ABI,
         address: erc20TokenAddress.value as Hex,
@@ -47,13 +60,12 @@ export const useNftDetails = () => {
         args: [userAddress, coffeContractAddress],
       });
 
-      if (BigInt(currentAllowance) < BigInt(quantity)) {
-        // approve
+      if (BigInt(currentAllowance) < totalPrice) {
         const approvalTransaction = await writeContract({
           abi: erc20ABI,
           address: erc20TokenAddress.value as Hex,
           functionName: "approve",
-          args: [coffeContractAddress, BigInt(quantity)],
+          args: [coffeContractAddress, BigInt(totalPrice)],
         });
 
         await waitForTransaction(approvalTransaction);
@@ -67,8 +79,8 @@ export const useNftDetails = () => {
         args: [quantity.toString()],
       });
 
-        await waitForTransaction(mintedToken);
-      } finally {
+      await waitForTransaction(mintedToken);
+    } finally {
       mintingNft.value = false;
 
       getNftBalance();
@@ -128,7 +140,12 @@ export const useNftDetails = () => {
       functionName: "symbol",
     });
 
-    getNftBalance();
+    nftBalance.value = await readContract({
+      abi: coffeeABI,
+      address: coffeContractAddress,
+      functionName: "balanceOf",
+      args: [userAddress],
+    });
   });
 
   return {
