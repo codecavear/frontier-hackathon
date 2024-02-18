@@ -35,7 +35,6 @@ export const useNftDetails = () => {
         functionName: "balanceOf",
         args: [userAddress],
       });
-      console.log("lastest nftBalance:", nftBalance.value);
 
       console.log("Balance:", balance);
       nftBalance.value = balance ? balance : 0;
@@ -60,11 +59,6 @@ export const useNftDetails = () => {
         functionName: "allowance",
         args: [userAddress, coffeContractAddress],
       });
-
-      console.log("Quantity:", quantity);
-      console.log("NFT Price:", nftPrice.value);
-      console.log("Total Cost:", totalPrice.toString());
-      console.log("Current Allowance:", currentAllowance);
 
       if (BigInt(currentAllowance) < totalPrice) {
         const approvalTransaction = await writeContract({
