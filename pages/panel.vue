@@ -5,7 +5,9 @@
         <h3 class="text-gray-400 text-xl uppercase mb-8">Pending orders:</h3>
         <div v-if="loadingTransfers" class="grid gap-8">
           <UCard v-for="item in 2" class="glass-card">
-            <template #header><USkeleton class="h-4 w-28" /></template>
+            <template #header>
+              <USkeleton class="h-4 w-28" />
+            </template>
             <div class="space-y-2">
               <USkeleton class="h-4 w-[250px]" />
               <USkeleton class="h-4 w-[200px]" />
