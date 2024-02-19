@@ -1,16 +1,46 @@
-<template>
-    <footer>
-        <div class=" container mx-auto flex justify-center items-center px-2 py-2 gap-2">
-            <h1 class="text-xl text-white bg-#1F2937">codeCave 2024</h1>
-            <img src="/img/x.svg" alt="x-logo" class="w-4">
-        </div>
-    </footer>
-</template>
-
 <script setup>
-
+const links = [
+  {
+    label: "Nuxt UI",
+    to: "https://ui.nuxt.com/",
+  },
+  {
+    label: "Nuxt Docs",
+    to: "https://nuxt.com",
+  },
+  {
+    label: "Nuxt Studio",
+    to: "https://nuxt.studio",
+  },
+];
 </script>
 
-<style lang="scss" scoped>
+<template>
+  <UFooter :links="links">
+    <template #left> Copyright © {{ new Date().getFullYear() }} </template>
 
-</style>
+    <template #right>
+      <UButton
+        icon="i-simple-icons-x"
+        color="gray"
+        variant="ghost"
+        to="https://x.com/nuxt_js"
+        target="_blank"
+      />
+      <UButton
+        icon="i-simple-icons-discord"
+        color="gray"
+        variant="ghost"
+        to="https://discord.com/invite/ps2h6QT"
+        target="_blank"
+      />
+      <UButton
+        icon="i-simple-icons-github"
+        color="gray"
+        variant="ghost"
+        to="https://github.com/nuxt/nuxt"
+        target="_blank"
+      />
+    </template>
+  </UFooter>
+</template>

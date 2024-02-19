@@ -91,9 +91,9 @@ useSeoMeta({
 <template>
   <div class="flex flex-col h-screen">
     <TheHeader />
-    <main class="flex-1">
+    <UMain>
       <NuxtPage />
-    </main>
+    </UMain>
 
     <UNotifications />
     <TheFooter />
