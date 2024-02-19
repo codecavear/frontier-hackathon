@@ -17,7 +17,7 @@
         </div>
       </div>
       <template #footer>
-        <UButton block label="Spend" color="orange" variant="soft" size="lg" @click="redeemNFT(quantity)" />
+        <UButton block label="Spend" color="orange" variant="soft" size="lg" @click="transferNFT(quantity, toAddress)" />
       </template>
     </UCard>
   </UModal>
@@ -26,14 +26,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { QrcodeStream } from 'vue-qrcode-reader'
-import { useNftDetails } from '../composables/useNft';
 
-const { redeemNFT } = useNftDetails();
+const { transferNFT } = useNftDetails();
 
 const props = defineProps(["isOpen"]);
 const emit = defineEmits(["update:isOpen"]);
 
 const toAddress = ref("")
+const quantity = ref(0);
 
 const onDetect = (detectedCodes: any) => {
   toAddress.value = detectedCodes[0].rawValue;

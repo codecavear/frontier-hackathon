@@ -9,7 +9,7 @@ import coffeeABI from "../abis/coffee.json";
 import { onMounted, ref } from "vue";
 import { Hex } from "viem";
 
-const coffeContractAddress = (process.env.NFT_CONTRACT_ADDRESS ||
+const nftContractAddress = (process.env.NFT_CONTRACT_ADDRESS ||
   "0x5Bf7D89f53A935373aE7CB257dD8D45C07f4D343") as Hex;
 
 const nftBalance = ref();
@@ -32,7 +32,7 @@ export const useNftDetails = () => {
     try {
       const balance = await readContract({
         abi: coffeeABI,
-        address: coffeContractAddress,
+        address: nftContractAddress,
         functionName: "balanceOf",
         args: [userAddress],
       });
@@ -58,7 +58,7 @@ export const useNftDetails = () => {
         abi: erc20ABI,
         address: erc20TokenAddress.value as Hex,
         functionName: "allowance",
-        args: [userAddress, coffeContractAddress],
+        args: [userAddress, nftContractAddress],
       });
 
       if (BigInt(currentAllowance) < totalPrice) {
@@ -66,7 +66,7 @@ export const useNftDetails = () => {
           abi: erc20ABI,
           address: erc20TokenAddress.value as Hex,
           functionName: "approve",
-          args: [coffeContractAddress, BigInt(totalPrice)],
+          args: [nftContractAddress, BigInt(totalPrice)],
         });
 
         await waitForTransaction(approvalTransaction);
@@ -75,7 +75,7 @@ export const useNftDetails = () => {
       // mint
       const mintedToken = await writeContract({
         abi: coffeeABI,
-        address: coffeContractAddress,
+        address: nftContractAddress,
         functionName: "mintToken",
         args: [quantity.toString()],
       });
@@ -97,7 +97,7 @@ export const useNftDetails = () => {
     try {
       const redeemTransaction = await writeContract({
         abi: coffeeABI,
-        address: coffeContractAddress,
+        address: nftContractAddress,
         functionName: "redeemToken",
         args: [quantity],
       });
@@ -108,13 +108,13 @@ export const useNftDetails = () => {
     } finally {
       await getNftBalance();
     }
-  }  
+  }
 
   async function transferNFT(quantity: number, newOwner: string) {
     try {
       const transferTransaction = await writeContract({
         abi: coffeeABI,
-        address: coffeContractAddress,
+        address: nftContractAddress,
         functionName: "transferToken",
         args: [quantity, newOwner],
       });
@@ -125,30 +125,30 @@ export const useNftDetails = () => {
     } finally {
       await getNftBalance();
     }
-  }  
+  }
 
   onMounted(async () => {
     erc20TokenAddress.value = await readContract({
       abi: coffeeABI,
-      address: coffeContractAddress,
+      address: nftContractAddress,
       functionName: "erc20Token",
     });
 
     nftPrice.value = await readContract({
       abi: coffeeABI,
-      address: coffeContractAddress,
+      address: nftContractAddress,
       functionName: "mintPrice",
     });
 
     nftSymbol.value = await readContract({
       abi: coffeeABI,
-      address: coffeContractAddress,
+      address: nftContractAddress,
       functionName: "symbol",
     });
 
     nftBalance.value = await readContract({
       abi: coffeeABI,
-      address: coffeContractAddress,
+      address: nftContractAddress,
       functionName: "balanceOf",
       args: [userAddress],
     });
@@ -157,6 +157,7 @@ export const useNftDetails = () => {
   return {
     erc20TokenAddress,
     nftBalance,
+    nftContractAddress,
     nftPrice,
     nftSymbol,
     mintNFT,

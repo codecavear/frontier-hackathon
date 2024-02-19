@@ -66,7 +66,7 @@
   </UCard>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const { nftPrice, nftSymbol, mintNFT, mintingNft } = useNftDetails();
 const { symbol: collateralSymbol } = useCollateralDetails();
 
