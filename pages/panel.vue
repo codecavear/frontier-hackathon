@@ -3,7 +3,16 @@
     <UContainer class="grid grid-cols-2 lg:grid-cols-4 pt-8 gap-8">
       <div class="col-span-2 lg:col-span-3 max-sm:order-2">
         <h3 class="text-gray-400 text-xl uppercase mb-8">Pending orders:</h3>
-        <div class="grid gap-8">
+        <div v-if="loadingTransfers" class="grid gap-8">
+          <UCard v-for="item in 2" class="glass-card">
+            <template #header><USkeleton class="h-4 w-28" /></template>
+            <div class="space-y-2">
+              <USkeleton class="h-4 w-[250px]" />
+              <USkeleton class="h-4 w-[200px]" />
+            </div>
+          </UCard>
+        </div>
+        <div v-else class="grid gap-8">
           <UCard class="glass-card" v-for="transfer in transfers">
             <template #header
               >Order: {{ shortenAddress(transfer.transactionHash) }}</template
@@ -46,7 +55,7 @@
             />
           </div>
         </UCard>
-        <UCard class="w-full">
+        <UCard class="w-full glass-card">
           <template #header>Redeem</template>
 
           <UForm
@@ -73,7 +82,6 @@ import type { FormError, FormErrorEvent, FormSubmitEvent } from "#ui/types";
 import QRCodeVue3 from "qrcode-vue3";
 import { getAccount, getPublicClient, watchContractEvent } from "@wagmi/core";
 import { onMounted } from "vue";
-import { parseAbiItem } from "viem";
 import erc20Abi from "../abis/erc20.json";
 
 const state = reactive({
@@ -83,42 +91,45 @@ const { address: userAddress } = getAccount();
 const { nftContractAddress } = useNftDetails();
 const publicClient = getPublicClient();
 const transfers = ref([]);
+const loadingTransfers = ref(false);
 
 onMounted(async () => {
-  transfers.value = await publicClient.getLogs({
-    address: nftContractAddress,
-    event: {
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "from",
-          type: "address",
-        },
-        {
-          indexed: true,
-          internalType: "address",
-          name: "to",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "quantity",
-          type: "uint256",
-        },
-      ],
-      name: "TokensTransferred",
-      type: "event",
-    },
-    args: {
-      to: userAddress,
-      from: userAddress,
-    },
-    fromBlock: 30084191n,
-  });
-
-  console.log("TRANSFERED:", transfers.value);
+  loadingTransfers.value = true;
+  try {
+    transfers.value = await publicClient.getLogs({
+      address: nftContractAddress,
+      event: {
+        inputs: [
+          {
+            indexed: true,
+            internalType: "address",
+            name: "from",
+            type: "address",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "to",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "quantity",
+            type: "uint256",
+          },
+        ],
+        name: "TokensTransferred",
+        type: "event",
+      },
+      args: {
+        to: userAddress,
+      },
+      fromBlock: 30084191n,
+    });
+  } finally {
+    loadingTransfers.value = false;
+  }
 });
 
 const unwatch = watchContractEvent(
