@@ -7,7 +7,7 @@
     </template>
 
     <template #right>
-      <UColorModeButton />
+      <!-- <UColorModeButton /> -->
       <div v-if="isConnected" class="coff-badge h-[31px] font-mono px-3 py-1">
         <UIcon dynamic name="i-bx-coffee-togo" />
         <span v-if="nftBalance">{{ nftBalance }}</span>

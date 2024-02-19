@@ -19,7 +19,7 @@
     </UContainer>
 
     <!-- Seccion 2 -->
-    <UContainer class="py-16 lg:py-32">
+    <UContainer class="py-8 lg:py-16 mb-16">
       <div
         class="flex items-center justify-center gap-8"
       >
@@ -47,8 +47,8 @@
       </div>
     </UContainer>
     <!-- Seccion 3 -->
-    <UContainer>
-      <div class="flex h-[80vh] items-center max-sm:flex-col max-sm:h-[100%]">
+    <UContainer class="py-8">
+      <div class="flex lg:min-h-[80vh] items-center max-sm:flex-col max-sm:h-[100%]">
         <div class="flex gap-3 flex-col content-start text-start">
           <h3 class="fontCg">Easy transaction</h3>
           <h1 class="text-3xl">Buy coffee on the go</h1>
@@ -76,7 +76,7 @@
     </UContainer>
     <!-- Seccion 4 -->
 
-    <UContainer class="h-[100vh] flex items-center max-sm:h-[120vh]">
+    <UContainer class="lg:min-h-[90vh] flex items-center py-16">
       <div class="flex justify-between max-sm:flex-col items-center">
         <div class="flex justify-center w-[60%]">
           <!-- <img src="/img/Wallet1.png" alt="" /> -->
@@ -153,9 +153,9 @@
 
     <!-- Seccion 5 Statics-->
 
-    <UContainer>
+    <UContainer class="py-16">
       <div
-        class="h-[80vh] flex justify-around max-sm:flex-col max-sm:h-[100%] max-sm:items-center max-sm:my-10 max-sm:w-full"
+        class="lg:min-h-[80vh] flex justify-around max-sm:flex-col max-sm:h-[100%] max-sm:items-center max-sm:my-10 max-sm:w-full"
       >
         <div class="flex gap-3 flex-col content-start text-start">
           <h3 class="text-sm font-extralight mb-10 max-sm:mb-4">STATISTICS</h3>
