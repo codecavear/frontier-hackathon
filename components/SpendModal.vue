@@ -1,5 +1,5 @@
 <template>
-  <UModal v-model="props.isOpen">
+  <UModal v-model="props.isOpen" >
     <UCard :ui="{
       ring: '',
       divide: 'divide-y divide-gray-100 dark:divide-gray-800',
@@ -13,7 +13,7 @@
         <qrcode-stream @detect="onDetect"></qrcode-stream>
         <div>
           <label>Store address</label>
-          <UInput label="Store address" v-model="toAddress"></UInput>
+          <UInput :autofocus="false" label="Store address" v-model="toAddress"></UInput>
         </div>
       </div>
       <template #footer>

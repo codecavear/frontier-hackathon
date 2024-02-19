@@ -4,7 +4,7 @@
     <UContainer
       class="h-screen flex items-center justify-between max-sm:flex-col max-sm:h-full"
     >
-      <div class="w-full pt-24 lg:pt-0">
+      <div class="w-full pt-16 lg:pt-0">
         <h1 class="text-2xl lg:text-7xl">Buying Coffee,</h1>
         <h1 class="text-2xl lg:text-7xl">just better.</h1>
         <h3 class="text-grey-400 lg:text-xl">Easy, contacless, decentralized, green.</h3>
@@ -19,30 +19,30 @@
     </UContainer>
 
     <!-- Seccion 2 -->
-    <UContainer class="h-[50vh] max-sm:h-[95vh] max-sm:mb-5">
+    <UContainer class="py-16 lg:py-32">
       <div
-        class="flex items-center justify-center max-sm:flex-col max-sm:justify-between max-sm:h-full"
+        class="flex items-center justify-center gap-8"
       >
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center gap-2">
           <div class="flex justify-center">
-            <img src="/img/Group26.png" alt="" />
+            <img class="steps-image" src="/img/Group26.png" alt="" />
           </div>
-          <p class="mt-2 max-sm:mb-3">Setup your wallet</p>
+          <p class="text-xs">Setup your wallet</p>
         </div>
-        <hr class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px]" />
-        <div class="flex flex-col items-center">
+        <hr class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px] max-sm:hidden" />
+        <div class="flex flex-col items-center  gap-2">
           <div class="flex justify-center">
-            <img src="/img/Group27.png" placeholder />
+            <img class="steps-image" src="/img/Group27.png" placeholder />
           </div>
-          <p class="mt-2 max-sm:mb-3">Buy your Coffee</p>
+          <p class="text-xs">Buy your Coffee</p>
         </div>
-        <hr class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px]" />
+        <hr class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px] max-sm:hidden" />
 
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center  gap-2">
           <div class="flex justify-center">
-            <img src="/img/Group28.png" />
+            <img class="steps-image" src="/img/Group28.png" />
           </div>
-          <p class="mt-2">Spend it anywere</p>
+          <p class="text-xs">Spend it anywere</p>
         </div>
       </div>
     </UContainer>
@@ -325,6 +325,10 @@ const team = [
 .avatar-size {
   width: 150px;
   height: 150px;
+}
+
+.steps-image {
+  @apply max-sm:w-1/2;
 }
 
 @media (max-width: 640px) {

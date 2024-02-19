@@ -9,7 +9,7 @@
     />
     </div>
 
-    <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center mt-4">
       <div>
         <UButton
           @click="removeOneCoffe()"
