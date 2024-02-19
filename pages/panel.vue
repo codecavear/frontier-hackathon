@@ -33,7 +33,14 @@
         <UCard class="glass-card w-full">
           <template #header>QR Code</template>
           <div v-if="userAddress" class="flex justify-center">
-            <QRCodeVue3
+            <ClientOnly>
+              <qr-code
+                :options="{ margin: 2 }"
+                :value="userAddress"
+                class="w-full max-w-full"
+              />
+            </ClientOnly>
+            <!-- <QRCodeVue3
               :width="200"
               :height="200"
               :value="userAddress"
@@ -54,7 +61,7 @@
                 },
               }"
               :cornersSquareOptions="{ type: 'square' }"
-            />
+            /> -->
           </div>
         </UCard>
         <UCard class="w-full glass-card">
@@ -84,7 +91,6 @@ definePageMeta({
   colorMode: "dark",
 });
 import type { FormError, FormErrorEvent, FormSubmitEvent } from "#ui/types";
-import QRCodeVue3 from "qrcode-vue3";
 import { getAccount, getPublicClient, watchContractEvent } from "@wagmi/core";
 import { onMounted } from "vue";
 import erc20Abi from "../abis/erc20.json";

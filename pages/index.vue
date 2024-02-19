@@ -185,7 +185,7 @@
       </div>
     </UContainer>
 
-    <UContainer class="min-h-[30vh] flex items-center w-full">
+    <UContainer class="min-h-[30vh] flex items-center w-full lg:pb-16">
       <div class="flex justify-between w-full flex-wrap">
         <div
           v-for="member in team"
