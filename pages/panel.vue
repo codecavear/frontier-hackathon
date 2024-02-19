@@ -78,6 +78,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  colorMode: "dark",
+});
 import type { FormError, FormErrorEvent, FormSubmitEvent } from "#ui/types";
 import QRCodeVue3 from "qrcode-vue3";
 import { getAccount, getPublicClient, watchContractEvent } from "@wagmi/core";

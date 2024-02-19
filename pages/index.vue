@@ -7,7 +7,9 @@
       <div class="w-full pt-8 lg:pt-0">
         <h1 class="text-2xl lg:text-7xl">Buying Coffee,</h1>
         <h1 class="text-2xl lg:text-7xl">just better.</h1>
-        <h3 class="text-grey-400 lg:text-xl">Easy, contacless, decentralized, green.</h3>
+        <h3 class="text-grey-400 lg:text-xl">
+          Easy, contacless, decentralized, green.
+        </h3>
         <div>
           <ConnectWallet v-if="!isConnected" />
         </div>
@@ -20,25 +22,27 @@
 
     <!-- Seccion 2 -->
     <UContainer class="py-8 lg:py-16 mb-16">
-      <div
-        class="flex items-center justify-center gap-8"
-      >
+      <div class="flex items-center justify-center gap-8">
         <div class="flex flex-col items-center gap-2">
           <div class="flex justify-center">
             <img class="steps-image" src="/img/Group26.png" alt="" />
           </div>
           <p class="text-xs">Setup your wallet</p>
         </div>
-        <hr class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px] max-sm:hidden" />
-        <div class="flex flex-col items-center  gap-2">
+        <hr
+          class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px] max-sm:hidden"
+        />
+        <div class="flex flex-col items-center gap-2">
           <div class="flex justify-center">
             <img class="steps-image" src="/img/Group27.png" placeholder />
           </div>
           <p class="text-xs">Buy your Coffee</p>
         </div>
-        <hr class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px] max-sm:hidden" />
+        <hr
+          class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px] max-sm:hidden"
+        />
 
-        <div class="flex flex-col items-center  gap-2">
+        <div class="flex flex-col items-center gap-2">
           <div class="flex justify-center">
             <img class="steps-image" src="/img/Group28.png" />
           </div>
@@ -48,7 +52,9 @@
     </UContainer>
     <!-- Seccion 3 -->
     <UContainer class="py-8">
-      <div class="flex lg:min-h-[80vh] items-center max-sm:flex-col max-sm:h-[100%]">
+      <div
+        class="flex lg:min-h-[80vh] items-center max-sm:flex-col max-sm:h-[100%]"
+      >
         <div class="flex gap-3 flex-col content-start text-start">
           <h3 class="fontCg">Easy transaction</h3>
           <h1 class="text-3xl">Buy coffee on the go</h1>
@@ -184,17 +190,15 @@
           <h3 class="text-5xl mb-4">ABOUT US</h3>
           <p class="font-light text-sm xl:w-[35%] sm:{w-[90%], mb-6 }">
             We are a team of developers exploring the possibilities of Web3,
-            Blockchains, and Decentralized Finances. We work with a focus on user
-            experience and utilize the latest technologies to bring the benefits
-            of Web3 to everyday use apps.
+            Blockchains, and Decentralized Finances. We work with a focus on
+            user experience and utilize the latest technologies to bring the
+            benefits of Web3 to everyday use apps.
           </p>
         </div>
       </UContainer>
 
       <UContainer class="min-h-[30vh] flex items-center w-full">
-        <div
-          class="grid grid-cols-6 w-full"
-        >
+        <div class="grid grid-cols-6 w-full">
           <div
             v-for="member in team"
             :key="member.name"
@@ -212,7 +216,10 @@
 </template>
 
 <script setup>
-import { getAccount } from '@wagmi/core';
+definePageMeta({
+  colorMode: "dark",
+});
+import { getAccount } from "@wagmi/core";
 
 const { isConnected } = getAccount();
 
