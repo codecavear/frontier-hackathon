@@ -104,8 +104,8 @@ function onTabsChange(index) {
 .cardF {
   background: linear-gradient(
     to top,
-    rgb(18, 18, 18) 10.6%,
-    rgb(0, 0, 0) 97.7%
+    rgb(18, 18, 18, 0.2) 10.6%,
+    rgb(0, 0, 0, 0.2) 97.7%
   );
 }
 </style>

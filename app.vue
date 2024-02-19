@@ -89,13 +89,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="flex flex-col h-screen">
-    <TheHeader />
-    <UMain>
-      <NuxtPage />
-    </UMain>
+  <TheHeader />
+  <UMain>
+    <NuxtPage />
+  </UMain>
 
-    <UNotifications />
-    <TheFooter />
-  </div>
+  <TheFooter />
+  <UNotifications />
 </template>

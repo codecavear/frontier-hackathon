@@ -1,7 +1,7 @@
 <template>
   <div class="carcC">
-    <UContainer class="grid lg:grid-cols-4 h-screen pt-24 gap-8">
-      <div class="col-span-3">
+    <UContainer class="grid grid-cols-2 lg:grid-cols-4 pt-8 gap-8">
+      <div class="col-span-2 lg:col-span-3 max-sm:order-2">
         <h3 class="text-gray-400 text-xl uppercase mb-8">Pending orders:</h3>
         <div class="grid gap-8">
           <UCard class="glass-card" v-for="transfer in transfers">
@@ -9,13 +9,17 @@
               >Order: {{ shortenAddress(transfer.transactionHash) }}</template
             >
             Quantity: {{ transfer.args.quantity }}
-            <p>Customer: {{ transfer.args.from }}</p>
+            <p class="text-ellipsis w-full">
+              Customer: {{ shortenAddress(transfer.args.from) }}
+            </p>
           </UCard>
         </div>
       </div>
 
-      <div class="flex flex-col gap-8">
-        <UCard class="glass-card">
+      <div
+        class="grid grid-cols-subgrid col-span-2 lg:col-span-1 gap-4 w-full max-sm:order-1"
+      >
+        <UCard class="glass-card w-full">
           <template #header>QR Code</template>
           <div v-if="userAddress" class="flex justify-center">
             <QRCodeVue3
@@ -42,7 +46,7 @@
             />
           </div>
         </UCard>
-        <UCard>
+        <UCard class="w-full">
           <template #header>Redeem</template>
 
           <UForm

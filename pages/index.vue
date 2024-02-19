@@ -2,9 +2,9 @@
   <div class="font-oxanium">
     <!-- Seccion 1 -->
     <UContainer
-      class="h-screen flex items-center justify-between max-sm:flex-col max-sm:h-full"
+      class="lg:min-h-[80vh] flex items-center justify-between max-sm:flex-col max-sm:h-full"
     >
-      <div class="w-full pt-16 lg:pt-0">
+      <div class="w-full pt-8 lg:pt-0">
         <h1 class="text-2xl lg:text-7xl">Buying Coffee,</h1>
         <h1 class="text-2xl lg:text-7xl">just better.</h1>
         <h3 class="text-grey-400 lg:text-xl">Easy, contacless, decentralized, green.</h3>
@@ -178,27 +178,27 @@
       </div>
     </UContainer>
     <!-- Seccion 6 The Team -->
-    <div class="backWorld">
+    <div class="backWorld py-16">
       <UContainer class="">
-        <div class="text-end flex justify-end flex-col items-end">
-          <h3 class="text-5xl mb-8">ABOUT US</h3>
+        <div class="lg:text-end flex justify-end flex-col lg:items-end mb-8">
+          <h3 class="text-5xl mb-4">ABOUT US</h3>
           <p class="font-light text-sm xl:w-[35%] sm:{w-[90%], mb-6 }">
-            We are a team of developers exploring the possibilities of Web 3,
-            blockchains, and decentralized finance. We work with a focus on user
+            We are a team of developers exploring the possibilities of Web3,
+            Blockchains, and Decentralized Finances. We work with a focus on user
             experience and utilize the latest technologies to bring the benefits
-            of Web 3 to everyday use apps.
+            of Web3 to everyday use apps.
           </p>
         </div>
       </UContainer>
 
-      <div class="xl:h-[40vh] flex items-center sm:h-full">
+      <UContainer class="min-h-[30vh] flex items-center w-full">
         <div
-          class="flex lg:justify-evenly w-full flex-wrap max-sm:flex-col max-sm:items-center"
+          class="grid grid-cols-6 w-full"
         >
           <div
             v-for="member in team"
             :key="member.name"
-            class="col-span-1 items-center max-sm:my-4"
+            class="max-md:col-span-3 lg:cols-span-1 items-center max-sm:my-4"
           >
             <UAvatar :src="member.avatar" class="avatar-size" size="4xl" />
             <p class="text-lg">{{ member.name }}</p>
@@ -206,7 +206,7 @@
             <UIcon name="i-jam-linkedin" dynamic />
           </div>
         </div>
-      </div>
+      </UContainer>
     </div>
   </div>
 </template>
@@ -310,7 +310,6 @@ const team = [
   background-size: cover;
   background-position-x: center;
   background-position-y: top;
-  height: 110vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
