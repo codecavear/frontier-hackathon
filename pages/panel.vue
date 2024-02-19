@@ -16,9 +16,7 @@
         </div>
         <div v-else class="grid grid-cols-2 gap-8">
           <UCard class="glass-card" v-for="transfer in transfers">
-            <template #header
-              >Order: {{ shortenAddress(transfer.transactionHash) }}</template
-            >
+            <template #header>Order: {{ shortenAddress(transfer.transactionHash) }}</template>
             Quantity: {{ transfer.args.quantity }}
             <p class="text-ellipsis w-full">
               Customer: {{ shortenAddress(transfer.args.from) }}
@@ -27,51 +25,36 @@
         </div>
       </div>
 
-      <div
-        class="grid grid-cols-subgrid col-span-2 lg:col-span-1 gap-4 w-full max-sm:order-1"
-      >
+      <div class="grid grid-cols-subgrid col-span-2 lg:col-span-1 gap-4 w-full max-sm:order-1">
         <UCard class="glass-card w-full">
           <template #header>QR Code</template>
           <div v-if="userAddress" class="flex justify-center">
-            <QRCodeVue3
-              :width="200"
-              :height="200"
-              :value="userAddress"
-              :qrOptions="{
-                typeNumber: 0,
-                mode: 'Byte',
-                errorCorrectionLevel: 'H',
-              }"
-              :dotsOptions="{
-                color: '#000',
-                gradient: {
-                  type: 'linear',
-                  rotation: 0,
-                  colorStops: [
-                    { offset: 0, color: '#000' },
-                    { offset: 1, color: '#000' },
-                  ],
-                },
-              }"
-              :cornersSquareOptions="{ type: 'square' }"
-            />
+            <QRCodeVue3 :width="200" :height="200" :value="userAddress" :qrOptions="{
+              typeNumber: 0,
+              mode: 'Byte',
+              errorCorrectionLevel: 'H',
+            }" :dotsOptions="{
+  color: '#000',
+  gradient: {
+    type: 'linear',
+    rotation: 0,
+    colorStops: [
+      { offset: 0, color: '#000' },
+      { offset: 1, color: '#000' },
+    ],
+  },
+}" :cornersSquareOptions="{ type: 'square' }" />
           </div>
         </UCard>
         <UCard class="w-full glass-card">
           <template #header>Redeem</template>
 
-          <UForm
-            :validate="validate"
-            :state="state"
-            class="space-y-4"
-            @submit="onSubmit"
-            @error="onError"
-          >
+          <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit" @error="onError">
             <UFormGroup label="Quantity" name="quantity">
               <UInput v-model="state.quantity" />
             </UFormGroup>
 
-            <UButton variant="soft" block type="submit"> Redeem </UButton>
+            <UButton variant="soft" block @click="redeemNFT(Number(state.quantity))"> Redeem </UButton>
           </UForm>
         </UCard>
       </div>
@@ -93,7 +76,7 @@ const state = reactive({
   quantity: undefined,
 });
 const { address: userAddress } = getAccount();
-const { nftContractAddress } = useNftDetails();
+const { nftContractAddress, redeemNFT } = useNftDetails();
 const publicClient = getPublicClient();
 const transfers = ref([]);
 const loadingTransfers = ref(false);
