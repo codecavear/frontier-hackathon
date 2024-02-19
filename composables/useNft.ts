@@ -19,6 +19,7 @@ export const useNftDetails = () => {
   const nftPrice = ref();
   const nftSymbol = ref();
   const mintingNft = ref(false);
+  const redeemingNft = ref(false);
   const toast = useToast();
 
   const { address: userAddress } = getAccount();
@@ -94,6 +95,7 @@ export const useNftDetails = () => {
   }
 
   async function redeemNFT(quantity: number) {
+    redeemingNft.value = true;
     try {
       const redeemTransaction = await writeContract({
         abi: coffeeABI,
@@ -102,10 +104,18 @@ export const useNftDetails = () => {
         args: [quantity],
       });
       await waitForTransaction(redeemTransaction);
+      console.log(1, redeemTransaction);
       console.log("Redeem ok");
     } catch (error) {
       console.error("Error redeeming nfts", error);
     } finally {
+      redeemingNft.value = false;
+
+      toast.add({
+        title: "Redeem successful!",
+        icon: "i-heroicons-check-circle",
+        description: `You redeem ${quantity} COFFs from your account!`,
+      });
       await getNftBalance();
     }
   }
@@ -164,5 +174,6 @@ export const useNftDetails = () => {
     mintingNft,
     transferNFT,
     redeemNFT,
+    redeemingNft,
   };
 };
