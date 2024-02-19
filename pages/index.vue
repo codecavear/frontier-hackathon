@@ -25,7 +25,7 @@
     </UContainer>
 
     <!-- Seccion 2 -->
-    <UContainer class="py-8 lg:py-16 mb-16 max-sm:mb-6">
+    <UContainer class="py-8 lg:py-16 mb-16 max-sm:mb-0">
       <div class="flex items-center justify-center max-sm:justify-evenly">
         <div class="flex flex-col items-center">
           <div class="flex justify-center">
@@ -53,7 +53,7 @@
     <!-- Seccion 3 -->
     <UContainer class="py-8">
       <div
-        class="flex lg:min-h-[80vh] items-center max-sm:flex-col max-sm:h-[100%]"
+        class="flex lg:min-h-[80vh] items-center max-sm:h-[100%] max-sm:flex-col"
       >
         <div class="flex gap-3 flex-col content-start text-start">
           <h3 class="fontCg">Easy transaction</h3>
@@ -83,7 +83,7 @@
     <!-- Seccion 4 -->
 
     <UContainer class="lg:min-h-[90vh] flex items-center py-16">
-      <div class="flex justify-between max-sm:flex-col items-center">
+      <div class="flex justify-between max-sm:flex-col-reverse items-center">
         <div
           class="flex justify-center sm:w-[40%] qr-example-img-box max-sm:my-4"
         >
@@ -102,11 +102,7 @@
             problem, we got you covered in seconds.
           </p>
           <div>
-            <UButton
-              variant="ghost"
-              label="Learn more"
-              class="font-extralight"
-            >
+            <UButton variant="ghost" label="Learn more" class="font-extralight">
               Learn more
               <UIcon name="i-heroicons-arrow-right-20-solid" />
             </UButton>
@@ -127,39 +123,46 @@
           reduce plastic waste
         </p>
       </div>
-      <div>
-        <CoffeeForm />
-      </div>
     </UContainer>
 
     <div id="third-bg">
-      <div class="w-[180px] h-[180px] box-first-bg">
+      <div
+        class="w-[180px] h-[180px] max-sm:w-[100px] max-sm:h-[100px] box-first-bg"
+      >
         <div class="bg-circle"></div>
       </div>
     </div>
 
     <!-- Seccion 5 Statics-->
 
-    <UContainer class="py-16">
+    <UContainer class="py-8">
       <div
-        class="lg:min-h-[80vh] flex justify-around max-sm:flex-col max-sm:h-[100%] max-sm:items-center max-sm:my-10 max-sm:w-full"
+        class="lg:min-h-[80vh] flex justify-around max-sm:flex-col max-sm:h-[35vh] max-sm:my-2 max-sm:w-full"
       >
         <div class="flex gap-3 flex-col content-start text-start">
           <h3 class="text-sm font-extralight mb-10 max-sm:mb-4">STATISTICS</h3>
           <h3 class="text-5xl max-sm:text-4xl">COFF numbers</h3>
         </div>
         <div
-          class="flex flex-col items-start h-[70vh] justify-around mt-14 max-sm:mt-0 max-sm:mx-auto"
+          class="flex flex-col items-start h-[80vh] justify-around mt-14 max-sm:mt-0 max-sm:mx-auto max-sm:flex-row max-sm:flex-wrap max-sm:h-[50vh] max-sm:items-center"
         >
           <div
             class="flex items-center"
             v-for="(data, index) in statics"
             :key="index"
           >
-            <p class="text-7xl fontCg font-semibold">{{ data.number }}</p>
-            <p class="ml-4 uppercase font-extralight text-sm w-[20%]">
-              {{ data.title }}
+            <p class="text-7xl fontCg font-semibold max-sm:text-6xl">
+              {{ data.number }}
             </p>
+            <div class="flex flex-col">
+              <p
+                class="ml-4 uppercase font-extralight text-sm w-[20%]"
+                v-for="(text, i) in data.title"
+                :key="i"
+              >
+                {{ text }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -167,8 +170,12 @@
 
     <UContainer class="my-8">
       <h4 class="text-5xl">ROADMAP</h4>
-      <div>
+      <div class="max-sm:hidden">
         <img src="/img/ROADMAP.svg" alt="" />
+      </div>
+      <div class="my-4">
+        <img src="/img/frame1.svg" alt="" />
+        <img src="/img/Frame3.svg" class="mt-6" alt="" />
       </div>
     </UContainer>
     <!-- Seccion 6 The Team -->
@@ -213,19 +220,19 @@ const { isConnected } = getAccount();
 const statics = [
   {
     number: "100",
-    title: "plastic cups less",
+    title: ["plastic", "cups", "less"],
   },
   {
     number: "200",
-    title: "nft suply",
+    title: ["nft", " suply"],
   },
   {
     number: "100",
-    title: "holders",
+    title: ["holders"],
   },
   {
     number: "100",
-    title: "tx",
+    title: ["tx"],
   },
 ];
 const team = [
