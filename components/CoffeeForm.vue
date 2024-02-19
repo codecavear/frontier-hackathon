@@ -1,5 +1,5 @@
 <template>
-  <UCard class="w-[300px] h-[380px] max-w-full cardF">
+  <UCard class="w-[340px] h-[380px] max-sm:w-[90vw] cardF">
     <div class="flex">
       <UTabs
         @change="onTabsChange"
@@ -39,14 +39,6 @@
         ></UButton>
       </div>
     </div>
-
-    <!-- <div class="flex justify-center my-4">
-      <UKbd>
-        1 {{ collateralSymbol }} = {{ formatFromEther(nftPrice) }}
-        {{ nftSymbol }}</UKbd
-      >
-    </div> -->
-
     <template #footer>
       <div class="flex flex-col">
         <div class="flex justify-between items-center text-xs my-2">
@@ -57,6 +49,7 @@
           </span>
         </div>
         <UButton
+          color="orange"
           variant="soft"
           size="lg"
           label="Buy"
