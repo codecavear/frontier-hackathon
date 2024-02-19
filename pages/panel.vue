@@ -1,8 +1,17 @@
 <template>
   <div>
-    <UContainer class="grid grid-cols-4 h-screen cardC pt-24">
+    <UContainer class="grid lg:grid-cols-4 h-screen cardC pt-24 gap-8">
       <div class="col-span-3">
-        <h3 class="text-gray-400 text-xl uppercase">Pending orders:</h3>
+        <h3 class="text-gray-400 text-xl uppercase mb-8">Pending orders:</h3>
+        <div class="grid gap-8">
+          <UCard class="glass-card" v-for="transfer in transfers">
+            <template #header
+              >Pedido: {{ shortenAddress(transfer.transactionHash) }}</template
+            >
+            Quantity: {{ transfer.args.quantity }}
+            <p>Customer: {{ transfer.args.from }}</p>
+          </UCard>
+        </div>
       </div>
 
       <div class="flex flex-col gap-8">
@@ -66,32 +75,49 @@ import erc20Abi from "../abis/erc20.json";
 const state = reactive({
   quantity: undefined,
 });
-
 const { address: userAddress } = getAccount();
 const { nftContractAddress } = useNftDetails();
 const publicClient = getPublicClient();
+const transfers = ref([]);
 
 onMounted(async () => {
-  const logs = await publicClient.getLogs({
-    address: "0x36F7caa6bEE589Ed6B24Dfa7A59f929cFeb2848e",
+  transfers.value = await publicClient.getLogs({
+    address: nftContractAddress,
     event: {
-      name: "Transfer",
       inputs: [
-        { type: "address", indexed: true, name: "from" },
-        { type: "address", indexed: true, name: "to" },
-        { type: "uint256", indexed: false, name: "value" },
+        {
+          indexed: true,
+          internalType: "address",
+          name: "from",
+          type: "address",
+        },
+        {
+          indexed: true,
+          internalType: "address",
+          name: "to",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "quantity",
+          type: "uint256",
+        },
       ],
+      name: "TokensTransferred",
+      type: "event",
     },
+    fromBlock: 30084191n,
   });
 
-  console.log("LOOGS", logs);
+  console.log("TRANSFERED:", transfers.value);
 });
 
 const unwatch = watchContractEvent(
   {
     address: nftContractAddress,
     abi: erc20Abi,
-    eventName: "TokensMinted",
+    eventName: "TokensTransferred",
   },
   (log) => console.log("NUEVO LOG MINTED,", log)
 );

@@ -33,7 +33,7 @@ const props = defineProps(["isOpen"]);
 const emit = defineEmits(["update:isOpen"]);
 
 const toAddress = ref("")
-const quantity = ref(0);
+const quantity = ref(1);
 
 const onDetect = (detectedCodes: any) => {
   toAddress.value = detectedCodes[0].rawValue;
