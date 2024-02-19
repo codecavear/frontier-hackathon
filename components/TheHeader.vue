@@ -1,5 +1,5 @@
 <template>
-  <UHeader :links="links">
+  <UHeader class="bg-transparent" :links="links">
     <template #logo>
       <NuxtLink to="/"
         ><h1 class="text-white text-2xl font-bold">COFF</h1></NuxtLink
