@@ -17,7 +17,7 @@
         </div>
       </div>
       <template #footer>
-        <UButton block label="Spend" color="orange" variant="soft" size="lg" @click="transferNFT(quantity, toAddress)" />
+        <UButton block label="Spend" variant="soft" size="lg" @click="transferNFT(quantity, toAddress)" />
       </template>
     </UCard>
   </UModal>

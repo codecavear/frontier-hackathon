@@ -64,7 +64,7 @@
             coffee.
           </p>
           <div>
-            <UButton variant="ghost" color="orange">
+            <UButton variant="ghost">
               Learn more <UIcon name="i-heroicons-arrow-right-20-solid" />
             </UButton>
           </div>
@@ -105,7 +105,6 @@
             <UButton
               variant="ghost"
               label="Learn more"
-              color="orange"
               class="font-extralight"
             >
               Learn more
@@ -269,11 +268,13 @@ const team = [
 .card {
   background-color: transparent;
 }
-.button-card {
-  background-color: #57241c57;
-  padding: 10px;
-  text-align: center;
-  color: #eb5d47;
+
+.bg-circle-box {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: -200px;
+  top: 0;
 }
 
 .cardC {
