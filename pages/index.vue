@@ -291,10 +291,10 @@ const team = [
   background-size: 800px;
 }
 .cardC {
-  /* background: radial-gradient(circle at 1000px 150px, #612333 1%, #121212 23%); */
+  background: radial-gradient(circle at 1000px 150px, #612333 1%, #000000 23%);
 }
 .cardCS {
-  /* background: radial-gradient(circle at 430px 320px, #612333 1%, #121212 23%); */
+  background: radial-gradient(circle at 430px 320px, #612333 1%, #000000 23%);
 }
 .bg-1 {
   background-color: #181818;
