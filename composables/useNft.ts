@@ -8,7 +8,7 @@ import {
 import coffeeABI from "../abis/coffee.json";
 import usdcABI from "../abis/erc20.json";
 import { onMounted, ref } from "vue";
-import { Hex } from "viem";
+import { Hex, formatEther } from "viem";
 
 const nftContractAddress = (process.env.NFT_CONTRACT_ADDRESS ||
   "0x5Bf7D89f53A935373aE7CB257dD8D45C07f4D343") as Hex;
@@ -125,7 +125,7 @@ export const useNftDetails = () => {
         title: "Redeem successful!",
         icon: "i-heroicons-check-circle",
         description: `You redeemed ${quantity} COFFs from your account and received ${
-          quantity * Number(nftPrice.value)
+          quantity * Number(formatEther(nftPrice.value))
         } ${collateralSymbol}!`,
       });
       await getNftBalance();
