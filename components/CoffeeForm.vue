@@ -1,22 +1,22 @@
 <template>
   <UCard class="w-[400px] max-w-full cardF">
-    <template #header>
-      <SpendModal v-model="spendModalOpen" />
+
+    <div class="flex">
       <UTabs
-        @change="onTabsChange"
-        :ui="{ list: { tab: { active: 'bg-[#3d170b]' } } }"
-        :items="tabsItems"
-      />
-    </template>
+      @change="onTabsChange"
+      :ui="{ list: { tab: { active: 'bg-transparent' }, background: 'dark:bg-transparent', marker: { background: 'dark:bg-transparent'} } }"
+      :items="tabsItems"
+    />
+    </div>
 
     <div class="flex justify-center items-center">
       <div>
         <UButton
           @click="removeOneCoffe()"
           icon="i-heroicons-minus"
-          size="md"
+          size="xl"
           :ui="{ rounded: 'rounded-full' }"
-          color="orange"
+          color="transparent"
           variant="soft"
         ></UButton>
       </div>
@@ -28,20 +28,20 @@
         <UButton
           @click="addOneCoffe()"
           icon="i-heroicons-plus"
-          size="md"
+          size="xl"
           :ui="{ rounded: 'rounded-full' }"
-          color="orange"
+          color="transparent"
           variant="soft"
         ></UButton>
       </div>
     </div>
 
-    <div class="flex justify-center my-4">
+    <!-- <div class="flex justify-center my-4">
       <UKbd>
         1 {{ collateralSymbol }} = {{ formatFromEther(nftPrice) }}
         {{ nftSymbol }}</UKbd
       >
-    </div>
+    </div> -->
 
     <template #footer>
       <div class="flex flex-col">
@@ -63,15 +63,18 @@
         />
       </div>
     </template>
+      <SpendModal v-model="spendModalOpen" />
   </UCard>
 </template>
 
 <script setup lang="ts">
-const { nftPrice, nftSymbol, mintNFT, mintingNft } = useNftDetails();
+const { nftBalance, nftPrice, nftSymbol, mintNFT, mintingNft } = useNftDetails();
 const { symbol: collateralSymbol } = useCollateralDetails();
 
 const quantity = ref(1);
 const spendModalOpen = ref(false);
+
+console.log(nftBalance)
 
 const tabsItems = computed(() => [
   {
@@ -79,10 +82,7 @@ const tabsItems = computed(() => [
   },
   {
     label: "Spend",
-  },
-  {
-    label: "Redeem",
-    disabled: true,
+    disabled: !nftBalance.value
   },
 ]);
 

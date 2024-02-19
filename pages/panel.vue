@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <UContainer class="grid lg:grid-cols-4 h-screen cardC pt-24 gap-8">
+  <div class="carcC">
+    <UContainer class="grid lg:grid-cols-4 h-screen pt-24 gap-8">
       <div class="col-span-3">
         <h3 class="text-gray-400 text-xl uppercase mb-8">Pending orders:</h3>
         <div class="grid gap-8">
           <UCard class="glass-card" v-for="transfer in transfers">
             <template #header
-              >Pedido: {{ shortenAddress(transfer.transactionHash) }}</template
+              >Order: {{ shortenAddress(transfer.transactionHash) }}</template
             >
             Quantity: {{ transfer.args.quantity }}
             <p>Customer: {{ transfer.args.from }}</p>
@@ -107,6 +107,10 @@ onMounted(async () => {
       name: "TokensTransferred",
       type: "event",
     },
+    args: {
+      to: userAddress,
+      from: userAddress,
+    },
     fromBlock: 30084191n,
   });
 
@@ -143,7 +147,7 @@ async function onError(event: FormErrorEvent) {
 
 <style scoped>
 .cardC {
-  background: radial-gradient(circle at 1000px 50%, #612333 1%, #121212 23%);
+  background: radial-gradient(circle at 1000px 350px, #612333 1%, #121212 23%);
 }
 
 .glass-card {

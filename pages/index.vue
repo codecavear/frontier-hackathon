@@ -2,18 +2,18 @@
   <div class="font-oxanium">
     <!-- Seccion 1 -->
     <UContainer
-      class="h-[100vh] flex items-center justify-between max-sm:flex-col max-sm:h-full"
+      class="h-screen flex items-center justify-between max-sm:flex-col max-sm:h-full"
     >
-      <div class="flex flex-col">
-        <h1 class="text-7xl">Not a cup,</h1>
-        <h1 class="text-7xl">just a coffee.</h1>
-        <h3 class="fontC text-xl">Easy, contacless, decentralized, green.</h3>
+      <div class="w-full pt-24 lg:pt-0">
+        <h1 class="text-2xl lg:text-7xl">Buying Coffee,</h1>
+        <h1 class="text-2xl lg:text-7xl">just better.</h1>
+        <h3 class="text-grey-400 lg:text-xl">Easy, contacless, decentralized, green.</h3>
         <div>
-          <ConnectWallet />
+          <ConnectWallet v-if="!isConnected" />
         </div>
       </div>
 
-      <div class="flex justify-center items-end h-[70vh]">
+      <div class="flex justify-center items-center lg:h-[70vh] mt-4">
         <CoffeeForm />
       </div>
     </UContainer>
@@ -212,6 +212,10 @@
 </template>
 
 <script setup>
+import { getAccount } from '@wagmi/core';
+
+const { isConnected } = getAccount();
+
 const statics = [
   {
     number: "100",
@@ -278,7 +282,7 @@ const team = [
 }
 .bg-circle-box {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   position: absolute;
   right: -200px;
   top: 0;
@@ -316,10 +320,6 @@ const team = [
   background: -webkit-linear-gradient(#eb5d47, #a933b2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.fontC {
-  color: #b0b0b0;
 }
 
 .avatar-size {
