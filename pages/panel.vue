@@ -71,7 +71,7 @@
               <UInput v-model="state.quantity" />
             </UFormGroup>
 
-            <UButton block type="submit"> Redeem </UButton>
+            <UButton variant="soft" block type="submit"> Redeem </UButton>
           </UForm>
         </UCard>
       </div>

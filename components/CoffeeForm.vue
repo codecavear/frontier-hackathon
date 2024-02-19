@@ -53,7 +53,6 @@
           </span>
         </div>
         <UButton
-          color="orange"
           variant="soft"
           size="lg"
           label="Buy"

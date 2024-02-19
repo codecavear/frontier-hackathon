@@ -1,10 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap");
 
-body {
-  background-color: #000000;
-  color: #fff;
-}
-
 html, body {
   @apply dark:bg-[#090909];
 }
