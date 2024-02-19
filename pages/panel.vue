@@ -3,7 +3,7 @@
     <UContainer class="grid grid-cols-2 lg:grid-cols-4 pt-8 gap-8">
       <div class="col-span-2 lg:col-span-3 max-sm:order-2">
         <h3 class="text-gray-400 text-xl uppercase mb-8">Pending orders:</h3>
-        <div v-if="loadingTransfers" class="grid gap-8">
+        <div v-if="loadingTransfers" class="grid grid-cols-2 gap-8">
           <UCard v-for="item in 2" class="glass-card">
             <template #header>
               <USkeleton class="h-4 w-28" />
@@ -14,7 +14,7 @@
             </div>
           </UCard>
         </div>
-        <div v-else class="grid gap-8">
+        <div v-else class="grid grid-cols-2 gap-8">
           <UCard class="glass-card" v-for="transfer in transfers">
             <template #header
               >Order: {{ shortenAddress(transfer.transactionHash) }}</template
@@ -174,7 +174,6 @@ async function onError(event: FormErrorEvent) {
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(1px);
   border-radius: 10px;
-  padding: 1rem;
   color: white;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
