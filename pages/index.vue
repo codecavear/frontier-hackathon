@@ -1,13 +1,17 @@
 <template>
   <div class="font-oxanium">
+    <div id="first-bg">
+      <div class="w-[150px] h-[150px] box-first-bg">
+        <div class="bg-circle"></div>
+      </div>
+    </div>
     <!-- Seccion 1 -->
     <UContainer
-      class="lg:min-h-[80vh] flex items-center justify-between max-sm:flex-col max-sm:h-full"
+      class="lg:min-h-[80vh] flex items-center justify-center max-sm:flex-col max-sm:h-full"
     >
-      <div class="w-full pt-8 lg:pt-0">
-        <h1 class="text-2xl lg:text-7xl">Buying Coffee,</h1>
-        <h1 class="text-2xl lg:text-7xl">just better.</h1>
-        <h3 class="text-grey-400 lg:text-xl">
+      <div class="w-full pt-8 lg:pt-0 sm:w-[50%]">
+        <h1 class="text-5xl sm:w-[70%]">Spend a COFF, enjoy a cooffe</h1>
+        <h3 class="text-grey-400 lg:text-xl my-2">
           Easy, contacless, decentralized, green.
         </h3>
         <div>
@@ -21,28 +25,24 @@
     </UContainer>
 
     <!-- Seccion 2 -->
-    <UContainer class="py-8 lg:py-16 mb-16">
-      <div class="flex items-center justify-center gap-8">
-        <div class="flex flex-col items-center gap-2">
+    <UContainer class="py-8 lg:py-16 mb-16 max-sm:mb-6">
+      <div class="flex items-center justify-center max-sm:justify-evenly">
+        <div class="flex flex-col items-center">
           <div class="flex justify-center">
             <img class="steps-image" src="/img/Group26.png" alt="" />
           </div>
           <p class="text-xs">Setup your wallet</p>
         </div>
-        <hr
-          class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px] max-sm:hidden"
-        />
-        <div class="flex flex-col items-center gap-2">
+        <hr class="w-[20%] hr-steps max-sm:hidden" max-sm:mt-2 />
+        <div class="flex flex-col items-center">
           <div class="flex justify-center">
             <img class="steps-image" src="/img/Group27.png" placeholder />
           </div>
           <p class="text-xs">Buy your Coffee</p>
         </div>
-        <hr
-          class="w-[20%] hr-steps max-sm:h-[55px] max-sm:w-[0px] max-sm:hidden"
-        />
+        <hr class="w-[20%] hr-steps max-sm:hidden" />
 
-        <div class="flex flex-col items-center gap-2">
+        <div class="flex flex-col items-center">
           <div class="flex justify-center">
             <img class="steps-image" src="/img/Group28.png" />
           </div>
@@ -84,8 +84,10 @@
 
     <UContainer class="lg:min-h-[90vh] flex items-center py-16">
       <div class="flex justify-between max-sm:flex-col items-center">
-        <div class="flex justify-center w-[60%]">
-          <!-- <img src="/img/Wallet1.png" alt="" /> -->
+        <div
+          class="flex justify-center sm:w-[40%] qr-example-img-box max-sm:my-4"
+        >
+          <img src="/img/qr-example.png" alt="" />
         </div>
 
         <div
@@ -120,42 +122,22 @@
       <div>
         <p class="fontCg text-sm">Reduce plastic waste</p>
         <p class="text-xl my-2">Not a cup, just a cooffe</p>
-        <p class="w-[35%] text-slate-400 max-sm:w-[100%]">
+        <p class="w-[50%] text-slate-400 max-sm:w-[100%]">
           Use your own cup every day. The coffee shop will serve you the coffee
           you choose in the cup you bring, so both of you will be helping to
           reduce plastic waste
         </p>
       </div>
       <div>
-        <UCard
-          class="card w-[300px] h-[350px] flex flex-col justify-between my-4"
-        >
-          <div class="card-top flex">
-            <p class="text-slate-400">Spend</p>
-            <p class="ml-4 font-semibold">Buy</p>
-          </div>
-
-          <div
-            class="flex items-center justify-evenly mx-auto w-[60%] font-semibold h-[160px]"
-          >
-            <p class="text-3xl">-</p>
-            <p class="text-6xl">10</p>
-            <p class="text-3xl">+</p>
-          </div>
-
-          <template #footer>
-            <div class="flex justify-between mt-2 mb-4 text-sm">
-              <p>Total</p>
-              <p>10 USDT</p>
-            </div>
-            <p class="button-card">BUY</p>
-          </template>
-        </UCard>
+        <CoffeeForm />
       </div>
     </UContainer>
-    <!-- <div class="bg-circle-box">
-      <div class="bg-circle"></div>
-    </div> -->
+
+    <div id="third-bg">
+      <div class="w-[180px] h-[180px] box-first-bg">
+        <div class="bg-circle"></div>
+      </div>
+    </div>
 
     <!-- Seccion 5 Statics-->
 
@@ -183,35 +165,41 @@
         </div>
       </div>
     </UContainer>
-    <!-- Seccion 6 The Team -->
-    <div class="backWorld py-16">
-      <UContainer class="">
-        <div class="lg:text-end flex justify-end flex-col lg:items-end mb-8">
-          <h3 class="text-5xl mb-4">ABOUT US</h3>
-          <p class="font-light text-sm xl:w-[35%] sm:{w-[90%], mb-6 }">
-            We are a team of developers exploring the possibilities of Web3,
-            Blockchains, and Decentralized Finances. We work with a focus on
-            user experience and utilize the latest technologies to bring the
-            benefits of Web3 to everyday use apps.
-          </p>
-        </div>
-      </UContainer>
 
-      <UContainer class="min-h-[30vh] flex items-center w-full">
-        <div class="grid grid-cols-6 w-full">
-          <div
-            v-for="member in team"
-            :key="member.name"
-            class="max-md:col-span-3 lg:cols-span-1 items-center max-sm:my-4"
-          >
-            <UAvatar :src="member.avatar" class="avatar-size" size="4xl" />
-            <p class="text-lg">{{ member.name }}</p>
-            <p class="text text-grey-400">{{ member.position }}</p>
-            <UIcon name="i-jam-linkedin" dynamic />
-          </div>
+    <UContainer class="my-8">
+      <h4 class="text-5xl">ROADMAP</h4>
+      <div>
+        <img src="/img/ROADMAP.svg" alt="" />
+      </div>
+    </UContainer>
+    <!-- Seccion 6 The Team -->
+    <div class="backWorld my-4 m-full h-[150px]"></div>
+    <UContainer class="">
+      <div class="lg:text-end flex justify-end flex-col lg:items-end mb-8">
+        <h3 class="text-5xl mb-4">ABOUT US</h3>
+        <p class="font-light text-sm xl:w-[35%] sm:{w-[90%], mb-6 }">
+          We are a team of developers exploring the possibilities of Web3,
+          Blockchains, and Decentralized Finances. We work with a focus on user
+          experience and utilize the latest technologies to bring the benefits
+          of Web3 to everyday use apps.
+        </p>
+      </div>
+    </UContainer>
+
+    <UContainer class="min-h-[30vh] flex items-center w-full">
+      <div class="flex justify-between w-full flex-wrap">
+        <div
+          v-for="member in team"
+          :key="member.name"
+          class="max-md:col-span-3 lg:cols-span-1 items-center max-sm:my-4"
+        >
+          <UAvatar :src="member.avatar" class="avatar-size" size="4xl" />
+          <p class="text-lg">{{ member.name }}</p>
+          <p class="text text-grey-400">{{ member.position }}</p>
+          <UIcon name="i-jam-linkedin" dynamic />
         </div>
-      </UContainer>
-    </div>
+      </div>
+    </UContainer>
   </div>
 </template>
 
@@ -287,20 +275,7 @@ const team = [
   text-align: center;
   color: #eb5d47;
 }
-.bg-circle-box {
-  display: flex;
-  justify-content: flex-end;
-  position: absolute;
-  right: -200px;
-  top: 0;
-}
 
-.bg-circle {
-  background: radial-gradient(circle, #612333 1%, #121212 43%);
-  height: 500px;
-  width: 800px;
-  background-size: 800px;
-}
 .cardC {
   background: radial-gradient(circle at 1000px 150px, #612333 1%, #000000 23%);
 }
@@ -312,14 +287,12 @@ const team = [
 }
 
 .backWorld {
-  background-image: url("/img/svg.png");
+  background-image: url("/img/bg-team.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 1800px;
   background-position-x: center;
   background-position-y: top;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  backdrop-filter: blur(10px);
 }
 
 .fontCg {
@@ -337,6 +310,31 @@ const team = [
   @apply max-sm:w-1/2;
 }
 
+.qr-example-img-box {
+  box-shadow: 0px 7px 180px 2px rgba(202, 52, 115, 0.79);
+}
+.box-first-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.bg-circle {
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 7px 153px 91px rgba(202, 52, 115, 0.79);
+  border-radius: 50%;
+  width: min-content;
+}
+#first-bg {
+  position: absolute;
+  top: 60px;
+  right: 190px;
+  z-index: 0;
+}
+#third-bg {
+  display: flex;
+  justify-content: flex-end;
+}
 @media (max-width: 640px) {
   .backWorld {
     height: 100%;
@@ -344,6 +342,9 @@ const team = [
   }
   .img-wallet-connect {
     margin-top: -50px;
+  }
+  #first-bg {
+    right: 10px;
   }
 }
 </style>
