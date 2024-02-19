@@ -173,7 +173,7 @@
       <div class="max-sm:hidden">
         <img src="/img/ROADMAP.svg" alt="" />
       </div>
-      <div class="my-4">
+      <div class="my-4 sm:hidden">
         <img src="/img/frame1.svg" alt="" />
         <img src="/img/Frame3.svg" class="mt-6" alt="" />
       </div>
