@@ -16,7 +16,9 @@
         </div>
         <div v-else class="grid grid-cols-2 gap-8">
           <UCard class="glass-card" v-for="transfer in transfers">
-            <template #header>Order: {{ shortenAddress(transfer.transactionHash) }}</template>
+            <template #header
+              >Order: {{ shortenAddress(transfer.transactionHash) }}</template
+            >
             Quantity: {{ transfer.args.quantity }}
             <p class="text-ellipsis w-full">
               Customer: {{ shortenAddress(transfer.args.from) }}
@@ -25,25 +27,43 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-subgrid col-span-2 lg:col-span-1 gap-4 w-full max-sm:order-1">
+      <div
+        class="grid grid-cols-subgrid col-span-2 lg:col-span-1 gap-4 w-full max-sm:order-1"
+      >
         <UCard class="glass-card w-full">
           <template #header>QR Code</template>
           <div v-if="userAddress" class="flex justify-center">
             <ClientOnly>
-              <qr-code :options="{ margin: 2 }" :value="userAddress" class="w-full max-w-full" />
+              <qr-code
+                :options="{ margin: 2 }"
+                :value="userAddress"
+                class="w-full max-w-full"
+              />
             </ClientOnly>
           </div>
         </UCard>
         <UCard class="w-full glass-card">
           <template #header>Redeem</template>
 
-          <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit" @error="onError">
+          <UForm
+            :validate="validate"
+            :state="state"
+            class="space-y-4"
+            @submit="onSubmit"
+            @error="onError"
+          >
             <UFormGroup label="Quantity" name="quantity">
               <UInput v-model="state.quantity" />
             </UFormGroup>
 
-            <UButton variant="soft" size="lg" label="Redeem" block @click="redeemNFT(Number(state.quantity))"
-              :loading="redeemingNft" />
+            <UButton
+              variant="soft"
+              size="lg"
+              label="Redeem"
+              block
+              @click="redeemNFT(Number(state.quantity))"
+              :loading="redeemingNft"
+            />
           </UForm>
         </UCard>
       </div>
@@ -58,13 +78,15 @@ definePageMeta({
 import type { FormError, FormErrorEvent, FormSubmitEvent } from "#ui/types";
 import { getAccount, getPublicClient, watchContractEvent } from "@wagmi/core";
 import { onMounted } from "vue";
-import erc20Abi from "../abis/erc20.json";
+import coffeeAbi from "../abis/coffee.json";
 
 const state = reactive({
   quantity: undefined,
 });
+const toast = useToast();
 const { address: userAddress } = getAccount();
-const { nftContractAddress, redeemNFT, redeemingNft } = useNftDetails();
+const { nftContractAddress, redeemNFT, redeemingNft, getNftBalance } =
+  useNftDetails();
 const publicClient = getPublicClient();
 const transfers = ref([]);
 const loadingTransfers = ref(false);
@@ -101,20 +123,32 @@ onMounted(async () => {
       args: {
         to: userAddress,
       },
-      fromBlock: 30084191n,
+      fromBlock: 30086191n,
     });
   } finally {
     loadingTransfers.value = false;
   }
 });
 
-const unwatch = watchContractEvent(
+watchContractEvent(
   {
     address: nftContractAddress,
-    abi: erc20Abi,
+    abi: coffeeAbi,
     eventName: "TokensTransferred",
   },
-  (log) => console.log("NUEVO LOG MINTED,", log)
+  (log) => {
+    if (log[0].args?.to !== userAddress) return;
+    transfers.value.push(log[0]);
+    toast.add({
+      title: "New Order",
+      icon: "i-heroicons-check-circle",
+      description: `You have a new order for ${
+        log[0].args?.quantity
+      } COFFs from ${shortenAddress(log[0].args?.from)}`,
+      color: "success",
+    });
+    getNftBalance();
+  }
 );
 
 const validate = (state: any): FormError[] => {

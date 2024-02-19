@@ -166,6 +166,7 @@ export const useNftDetails = () => {
 
   return {
     erc20TokenAddress,
+    getNftBalance,
     nftBalance,
     nftContractAddress,
     nftPrice,
