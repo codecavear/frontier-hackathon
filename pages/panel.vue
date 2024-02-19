@@ -40,28 +40,6 @@
                 class="w-full max-w-full"
               />
             </ClientOnly>
-            <!-- <QRCodeVue3
-              :width="200"
-              :height="200"
-              :value="userAddress"
-              :qrOptions="{
-                typeNumber: 0,
-                mode: 'Byte',
-                errorCorrectionLevel: 'H',
-              }"
-              :dotsOptions="{
-                color: '#000',
-                gradient: {
-                  type: 'linear',
-                  rotation: 0,
-                  colorStops: [
-                    { offset: 0, color: '#000' },
-                    { offset: 1, color: '#000' },
-                  ],
-                },
-              }"
-              :cornersSquareOptions="{ type: 'square' }"
-            /> -->
           </div>
         </UCard>
         <UCard class="w-full glass-card">
@@ -78,7 +56,13 @@
               <UInput v-model="state.quantity" />
             </UFormGroup>
 
-            <UButton variant="soft" block type="submit"> Redeem </UButton>
+            <UButton
+              variant="soft"
+              block
+              @click="redeemNFT(Number(state.quantity))"
+            >
+              Redeem
+            </UButton>
           </UForm>
         </UCard>
       </div>
@@ -99,7 +83,7 @@ const state = reactive({
   quantity: undefined,
 });
 const { address: userAddress } = getAccount();
-const { nftContractAddress } = useNftDetails();
+const { nftContractAddress, redeemNFT } = useNftDetails();
 const publicClient = getPublicClient();
 const transfers = ref([]);
 const loadingTransfers = ref(false);
