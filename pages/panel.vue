@@ -54,7 +54,8 @@
               <UInput v-model="state.quantity" />
             </UFormGroup>
 
-            <UButton variant="soft" block @click="redeemNFT(Number(state.quantity))"> Redeem </UButton>
+            <UButton variant="soft" size="lg" label="Redeem" block @click="redeemNFT(Number(state.quantity))"
+              :loading="redeemingNft" />
           </UForm>
         </UCard>
       </div>
@@ -76,7 +77,7 @@ const state = reactive({
   quantity: undefined,
 });
 const { address: userAddress } = getAccount();
-const { nftContractAddress, redeemNFT } = useNftDetails();
+const { nftContractAddress, redeemNFT, redeemingNft } = useNftDetails();
 const publicClient = getPublicClient();
 const transfers = ref([]);
 const loadingTransfers = ref(false);
