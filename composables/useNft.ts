@@ -6,6 +6,7 @@ import {
   writeContract,
 } from "@wagmi/core";
 import coffeeABI from "../abis/coffee.json";
+import usdcABI from "../abis/erc20.json";
 import { onMounted, ref } from "vue";
 import { Hex } from "viem";
 
@@ -96,6 +97,7 @@ export const useNftDetails = () => {
 
   async function redeemNFT(quantity: number) {
     redeemingNft.value = true;
+    let collateralSymbol;
     try {
       const redeemTransaction = await writeContract({
         abi: coffeeABI,
@@ -103,9 +105,17 @@ export const useNftDetails = () => {
         functionName: "redeemToken",
         args: [quantity],
       });
+
       await waitForTransaction(redeemTransaction);
-      console.log(1, redeemTransaction);
       console.log("Redeem ok");
+
+      collateralSymbol = await readContract({
+        abi: usdcABI,
+        address: erc20TokenAddress.value as Hex,
+        functionName: "symbol",
+      });
+
+      return redeemTransaction;
     } catch (error) {
       console.error("Error redeeming nfts", error);
     } finally {
@@ -114,7 +124,9 @@ export const useNftDetails = () => {
       toast.add({
         title: "Redeem successful!",
         icon: "i-heroicons-check-circle",
-        description: `You redeem ${quantity} COFFs from your account!`,
+        description: `You redeemed ${quantity} COFFs from your account and received ${
+          quantity * Number(nftPrice.value)
+        } ${collateralSymbol}!`,
       });
       await getNftBalance();
     }
