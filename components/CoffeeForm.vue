@@ -1,15 +1,20 @@
 <template>
-  <UCard class="w-[400px] max-w-full cardF">
-
+  <UCard class="w-[300px] h-[380px] max-w-full cardF">
     <div class="flex">
       <UTabs
-      @change="onTabsChange"
-      :ui="{ list: { tab: { active: 'bg-transparent' }, background: 'dark:bg-transparent', marker: { background: 'dark:bg-transparent'} } }"
-      :items="tabsItems"
-    />
+        @change="onTabsChange"
+        :ui="{
+          list: {
+            tab: { active: 'bg-transparent' },
+            background: 'dark:bg-transparent',
+            marker: { background: 'dark:bg-transparent' },
+          },
+        }"
+        :items="tabsItems"
+      />
     </div>
 
-    <div class="flex justify-center items-center mt-4">
+    <div class="flex justify-center items-center mt-4 h-[150px]">
       <div>
         <UButton
           @click="removeOneCoffe()"
@@ -21,7 +26,6 @@
         ></UButton>
       </div>
       <div class="flex flex-col items-center px-6">
-        <h2>Quantity</h2>
         <h1 class="text-8xl">{{ quantity }}</h1>
       </div>
       <div>
@@ -45,7 +49,7 @@
 
     <template #footer>
       <div class="flex flex-col">
-        <div class="flex justify-between items-center uppercase text-xs my-2">
+        <div class="flex justify-between items-center text-xs my-2">
           <span>Total:</span>
           <span>
             {{ formatFromEther(quantity * Number(nftPrice)) }}
@@ -62,18 +66,21 @@
         />
       </div>
     </template>
-      <SpendModal v-model="spendModalOpen" />
+    <SpendModal v-model="spendModalOpen" />
   </UCard>
 </template>
 
 <script setup lang="ts">
-const { nftBalance, nftPrice, nftSymbol, mintNFT, mintingNft } = useNftDetails();
+import { ref } from "vue";
+
+const { nftBalance, nftPrice, nftSymbol, mintNFT, mintingNft } =
+  useNftDetails();
 const { symbol: collateralSymbol } = useCollateralDetails();
 
 const quantity = ref(1);
 const spendModalOpen = ref(false);
 
-console.log(nftBalance)
+console.log(nftBalance);
 
 const tabsItems = computed(() => [
   {
@@ -81,7 +88,7 @@ const tabsItems = computed(() => [
   },
   {
     label: "Spend",
-    disabled: !nftBalance.value
+    disabled: !nftBalance.value,
   },
 ]);
 
@@ -106,5 +113,6 @@ function onTabsChange(index) {
     rgb(18, 18, 18, 0.2) 10.6%,
     rgb(0, 0, 0, 0.2) 97.7%
   );
+  z-index: 10;
 }
 </style>
