@@ -123,7 +123,7 @@ onMounted(async () => {
       args: {
         to: userAddress,
       },
-      fromBlock: 30086191n,
+      fromBlock: 30146191n,
     });
   } finally {
     loadingTransfers.value = false;
