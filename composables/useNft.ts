@@ -21,6 +21,7 @@ export const useNftDetails = () => {
   const mintingNft = ref(false);
   const redeemingNft = ref(false);
   const toast = useToast();
+  const erc20TokenAddress = ref();
 
   const { address: userAddress } = getAccount();
 
@@ -123,9 +124,8 @@ export const useNftDetails = () => {
       toast.add({
         title: "Redeem successful!",
         icon: "i-heroicons-check-circle",
-        description: `You redeemed ${quantity} COFFs from your account and received ${
-          quantity * Number(formatEther(nftPrice.value))
-        } ${collateralSymbol}!`,
+        description: `You redeemed ${quantity} COFFs from your account and received ${quantity * Number(formatEther(nftPrice.value))
+          } ${collateralSymbol}!`,
       });
       await getNftBalance();
     }
